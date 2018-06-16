@@ -20,10 +20,7 @@ public class DaisukebotApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DaisukebotApplication.class, args);
 	}
-
-    @Autowired
-    private LineMessagingClient lineMessagingClient;
-
+	
     @EventMapping
     public TextMessage handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);

@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -jar target/daisukebot-0.0.1-SNAPSHOT.jar --server.port=$PORT
