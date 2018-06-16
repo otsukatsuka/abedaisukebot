@@ -23,3 +23,14 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+# maven #
+/.mvn/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# linebot keys #
+/src/resources/application.yml
