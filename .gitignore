@@ -41,4 +41,4 @@ buildNumber.properties
 *.ear
 
 # linebot keys #
-src/resources/application.yml
+src/main/resources/application.yml
