@@ -1,9 +1,10 @@
 package com.otsukatsuka.daisukebot;
 
+import com.linecorp.bot.model.event.message.LocationMessageContent;
+import com.linecorp.bot.model.message.LocationMessage;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.linecorp.bot.model.event.Event;
 import com.linecorp.bot.model.event.MessageEvent;
@@ -24,6 +25,12 @@ public class DaisukebotApplication {
     public TextMessage handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
         return new TextMessage(event.getMessage().getText());
+    }
+
+    @EventMapping
+    public LocationMessage handleLocationMessageEvent(MessageEvent<LocationMessageContent> event){
+	    System.out.println("event: " + event);
+	    return new LocationMessage("ここにいるよ", event.getMessage().getAddress(), event.getMessage().getLatitude(), event.getMessage().getLongitude());
     }
 
     @EventMapping
