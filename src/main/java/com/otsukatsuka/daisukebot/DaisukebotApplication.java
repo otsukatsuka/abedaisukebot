@@ -1,5 +1,6 @@
 package com.otsukatsuka.daisukebot;
 
+import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +13,7 @@ import com.linecorp.bot.spring.boot.annotation.EventMapping;
 
 
 @SpringBootApplication
-@RestController
+@LineMessageHandler
 public class DaisukebotApplication {
 
 	public static void main(String[] args) {
