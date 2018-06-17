@@ -24,7 +24,7 @@ public class DaisukebotApplication {
     @EventMapping
     public TextMessage handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
-        return new MessageManager<>(event.getMessage()).getTextMessage();
+        return new MessageProvider<TextMessage>().Generate(Enums.Message.EchoTextMessage, event.getMessage());
     }
 
     @EventMapping

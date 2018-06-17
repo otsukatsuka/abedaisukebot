@@ -4,8 +4,8 @@ import com.linecorp.bot.model.event.message.MessageContent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.Message;
 
-public class MessageProvider<TMessage extends Message> implements IMessageGenerator<TMessage> {
-    @Override
+public class MessageProvider<TMessage extends Message> {
+
     public TMessage Generate(Enums.Message message, MessageContent content) {
         return (TMessage) Create(message, content);
     }
