@@ -2,6 +2,8 @@ package com.otsukatsuka.daisukebot;
 
 import com.linecorp.bot.model.event.message.LocationMessageContent;
 import com.linecorp.bot.model.message.LocationMessage;
+import com.linecorp.bot.model.message.Message;
+import com.linecorp.bot.model.message.StickerMessage;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,8 +24,12 @@ public class DaisukebotApplication {
 	}
 
     @EventMapping
-    public TextMessage handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
+    public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
+
+        if(event.getMessage().getText().equals("スタンプ")){
+            return new MessageProvider<StickerMessage>().Generate(Enums.Message.StickerMessage);
+        }
         return new MessageProvider<TextMessage>().Generate(Enums.Message.EchoTextMessage, event.getMessage());
     }
 

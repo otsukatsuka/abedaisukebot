@@ -10,12 +10,18 @@ public class MessageProvider<TMessage extends Message> {
         return (TMessage) Create(message, content);
     }
 
-    private Message Create(Enums.Message message, MessageContent content){
+    public TMessage Generate(Enums.Message message){
+        return (TMessage) Create(message, null);
+    }
+
+    private static Message Create(Enums.Message message, MessageContent content){
         switch (message){
             case EchoTextMessage:
-                return new TextMessageGenerator().EchoTextMessage((TextMessageContent) content);
+                return new TextMessageGenerator((TextMessageContent) content).Generate();
             case EchoLocationMessage:
                 return null;
+            case StickerMessage:
+                return new StickerMessageGenerator().Generate();
         }
         return null;
     }
