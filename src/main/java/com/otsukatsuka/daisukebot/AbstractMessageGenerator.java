@@ -1,20 +1,16 @@
 package com.otsukatsuka.daisukebot;
 
-import com.linecorp.bot.model.message.Message;
-
-public abstract class AbstractMessageGenerator<TMessageContent> {
+public abstract class AbstractMessageGenerator<TMessageContent> implements MessageGeneratorInterface {
     private TMessageContent messageContent;
 
-    public AbstractMessageGenerator(TMessageContent messageContent){
+    protected AbstractMessageGenerator(TMessageContent messageContent){
         this.messageContent = messageContent;
     }
 
-    public AbstractMessageGenerator(){
+    protected AbstractMessageGenerator(){
     }
 
     public TMessageContent getMessageContent(){
         return this.messageContent;
     }
-
-    public abstract Message Generate();
 }

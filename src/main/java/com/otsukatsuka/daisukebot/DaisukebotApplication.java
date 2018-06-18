@@ -1,9 +1,9 @@
 package com.otsukatsuka.daisukebot;
 
+import com.otsukatsuka.daisukebot.Enums.GeneratorType;
 import com.linecorp.bot.model.event.message.LocationMessageContent;
 import com.linecorp.bot.model.message.LocationMessage;
 import com.linecorp.bot.model.message.Message;
-import com.linecorp.bot.model.message.StickerMessage;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,8 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.linecorp.bot.model.event.Event;
 import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
-import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
+
+import java.util.List;
 
 
 @SpringBootApplication
@@ -23,14 +24,10 @@ public class DaisukebotApplication {
 		SpringApplication.run(DaisukebotApplication.class, args);
 	}
 
-    @EventMapping
-    public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
+	@EventMapping
+    public List<Message> handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
-
-        if(event.getMessage().getText().equals("スタンプ")){
-            return new MessageProvider<StickerMessage>().Generate(Enums.Message.StickerMessage);
-        }
-        return new MessageProvider<TextMessage>().Generate(Enums.Message.EchoTextMessage, event.getMessage());
+        return new MessageBuilder.Builder(event.getMessage()).set(GeneratorType.EchoTextMessage).set(GeneratorType.StickerMessage).set(GeneratorType.EchoTextMessage).build().getMessageList();
     }
 
     @EventMapping
