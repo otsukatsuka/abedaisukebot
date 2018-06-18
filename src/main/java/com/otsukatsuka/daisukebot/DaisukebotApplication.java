@@ -5,6 +5,7 @@ import com.linecorp.bot.model.event.message.LocationMessageContent;
 import com.linecorp.bot.model.message.LocationMessage;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -21,7 +22,7 @@ import java.util.List;
 public class DaisukebotApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DaisukebotApplication.class, args);
+        SpringApplication.run(DaisukebotApplication.class, args);
 	}
 
 	@EventMapping
