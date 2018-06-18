@@ -4,15 +4,11 @@ import com.otsukatsuka.daisukebot.Enums.GeneratorType;
 import com.linecorp.bot.model.event.message.MessageContent;
 import com.linecorp.bot.model.message.Message;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class MessageBuilder {
-    private static final Logger logger = LoggerFactory.getLogger(MessageBuilder.class);
 
     private List<Message> messageList;
 
@@ -34,7 +30,7 @@ public class MessageBuilder {
         MessageBuilder build(){
             generatorTypes.forEach(generatorType -> {
                 Message message = generatorType.of(this.messageContent).createMessage();
-                logger.info("add message : " + message.toString());
+                System.out.println("add message : " + message);
                 addMessage(message);
             });
             return new MessageBuilder(this);
@@ -50,6 +46,7 @@ public class MessageBuilder {
     }
 
     public List<Message> getMessageList() {
+        System.out.println("messageList : " + this.messageList);
         return this.messageList;
     }
 
