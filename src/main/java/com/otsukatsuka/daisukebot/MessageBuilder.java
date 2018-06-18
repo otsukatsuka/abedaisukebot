@@ -29,9 +29,13 @@ public class MessageBuilder {
 
         MessageBuilder build(){
             generatorTypes.forEach(generatorType -> {
-                Message message = generatorType.of(this.messageContent).createMessage();
-                System.out.println("add message : " + message);
-                addMessage(message);
+                try{
+                    Message message = generatorType.of(this.messageContent).createMessage();
+                    System.out.println("add message : " + message);
+                    addMessage(message);
+                }catch (Exception e){
+                    System.out.println(e);
+                }
             });
             return new MessageBuilder(this);
         }
