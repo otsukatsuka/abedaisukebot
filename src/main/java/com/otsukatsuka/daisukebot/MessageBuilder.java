@@ -39,7 +39,7 @@ public class MessageBuilder {
                 System.out.println("Error !!! : " + e);
                 Map<String, Object> parameters = new HashMap<String, Object>(){
                     {
-                        put(Consts.Parameters.Text.Text, e);
+                        put(Consts.Parameters.Text.Text, e.getMessage());
                     }
                 };
                 Message message = GeneratorType.EchoTextMessage.of(parameters).action();
