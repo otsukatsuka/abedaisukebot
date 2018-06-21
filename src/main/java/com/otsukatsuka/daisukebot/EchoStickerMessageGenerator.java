@@ -10,11 +10,14 @@ public class EchoStickerMessageGenerator extends MessageGeneratorBase<StickerMes
 
     private EchoStickerMessageGenerator(Map<String, Object> parameters){
         super(parameters);
-        this.clazz = StickerMessageContent.class;
+    }
+
+    @Override
+    protected Class<StickerMessageContent> getMessageContentClass() {
+        return StickerMessageContent.class;
     }
 
     EchoStickerMessageGenerator() {
-        this.clazz = StickerMessageContent.class;
     }
 
     @Override

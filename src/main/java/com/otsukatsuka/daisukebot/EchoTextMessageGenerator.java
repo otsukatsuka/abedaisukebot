@@ -10,11 +10,14 @@ public class EchoTextMessageGenerator extends MessageGeneratorBase<TextMessageCo
 
     private EchoTextMessageGenerator(Map<String, Object> parameters) {
         super(parameters);
-        this.clazz = TextMessageContent.class;
+    }
+
+    @Override
+    protected Class<TextMessageContent> getMessageContentClass() {
+        return TextMessageContent.class;
     }
 
     EchoTextMessageGenerator(){
-        this.clazz = TextMessageContent.class;
     }
 
     @Override

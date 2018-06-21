@@ -1,16 +1,15 @@
 package com.otsukatsuka.daisukebot;
 
-import com.linecorp.bot.model.event.message.MessageContent;
 import com.linecorp.bot.model.message.Message;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Map;
 
-public class MessageGeneratorBase<TMessageContent> implements MessageGeneratorInterface {
+public abstract class MessageGeneratorBase<TMessageContent> implements MessageGeneratorInterface {
 
     private Map<String,Object> parameters;
 
-    protected Class<TMessageContent> clazz;
+    protected abstract Class<TMessageContent> getMessageContentClass();
 
     MessageGeneratorBase(){}
 
@@ -19,7 +18,7 @@ public class MessageGeneratorBase<TMessageContent> implements MessageGeneratorIn
     }
 
     protected TMessageContent getMessageContent(){
-        TMessageContent messageContent = as(parameters.getOrDefault(Consts.Parameters.MessageContent, null), clazz);
+        TMessageContent messageContent = as(parameters.getOrDefault(Consts.Parameters.MessageContent, null), getMessageContentClass());
         return messageContent;
     }
     private boolean hasSameMessageEvent(){
@@ -41,7 +40,6 @@ public class MessageGeneratorBase<TMessageContent> implements MessageGeneratorIn
         return clazz.cast(obj);
     }
 
-
     @Override
     public <TMessageGenerator extends MessageGeneratorInterface> TMessageGenerator createGenerator(Map<String, Object> parameters) {
         return null;
@@ -50,10 +48,7 @@ public class MessageGeneratorBase<TMessageContent> implements MessageGeneratorIn
     @Override
     public Message action() {
         if(hasSameMessageEvent()){
-            System.out.println("start action " + "this : " +  this.getClass() + " message content : " + getMessageContent().getClass());
-            Message message = createFromMessageEvent(getMessageContent());
-            System.out.println("end action");
-            return message;
+            return createFromMessageEvent(getMessageContent());
         }
         return create(parameters);
     }

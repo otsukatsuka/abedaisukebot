@@ -1,10 +1,8 @@
 package com.otsukatsuka.daisukebot;
 
-import com.linecorp.bot.model.event.message.MessageContent;
 import com.otsukatsuka.daisukebot.Enums.GeneratorType;
 import com.linecorp.bot.model.message.Message;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
