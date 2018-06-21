@@ -10,9 +10,12 @@ public class EchoTextMessageGenerator extends MessageGeneratorBase<TextMessageCo
 
     private EchoTextMessageGenerator(Map<String, Object> parameters) {
         super(parameters);
+        this.clazz = TextMessageContent.class;
     }
 
-    EchoTextMessageGenerator(){}
+    EchoTextMessageGenerator(){
+        this.clazz = TextMessageContent.class;
+    }
 
     @Override
     public <TMessageGenerator extends MessageGeneratorInterface> TMessageGenerator createGenerator(Map<String, Object> parameters) {

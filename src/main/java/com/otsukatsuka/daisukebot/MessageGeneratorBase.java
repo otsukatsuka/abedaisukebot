@@ -1,5 +1,6 @@
 package com.otsukatsuka.daisukebot;
 
+import com.linecorp.bot.model.event.message.MessageContent;
 import com.linecorp.bot.model.message.Message;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -9,6 +10,8 @@ public class MessageGeneratorBase<TMessageContent> implements MessageGeneratorIn
 
     private Map<String,Object> parameters;
 
+    protected Class<TMessageContent> clazz;
+
     MessageGeneratorBase(){}
 
     MessageGeneratorBase(Map<String, Object> parameters){
@@ -16,7 +19,7 @@ public class MessageGeneratorBase<TMessageContent> implements MessageGeneratorIn
     }
 
     protected TMessageContent getMessageContent(){
-        TMessageContent messageContent = (TMessageContent) parameters.getOrDefault(Consts.Parameters.MessageContent, null);
+        TMessageContent messageContent = as(parameters.getOrDefault(Consts.Parameters.MessageContent, null), clazz);
         return messageContent;
     }
     private boolean hasSameMessageEvent(){

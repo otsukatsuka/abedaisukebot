@@ -10,9 +10,12 @@ public class EchoStickerMessageGenerator extends MessageGeneratorBase<StickerMes
 
     private EchoStickerMessageGenerator(Map<String, Object> parameters){
         super(parameters);
+        this.clazz = StickerMessageContent.class;
     }
 
-    EchoStickerMessageGenerator(){}
+    EchoStickerMessageGenerator() {
+        this.clazz = StickerMessageContent.class;
+    }
 
     @Override
     public <TMessageGenerator extends MessageGeneratorInterface> TMessageGenerator createGenerator(Map<String, Object> parameters) {
@@ -26,9 +29,6 @@ public class EchoStickerMessageGenerator extends MessageGeneratorBase<StickerMes
 
     @Override
     protected Message create(Map<String,Object> parameters){
-
-
-
         String packageId = (String) parameters.getOrDefault(Consts.Parameters.Sticker.PackageId, "1");
         String stickerId = (String) parameters.getOrDefault(Consts.Parameters.Sticker.StickerId, "1");
 

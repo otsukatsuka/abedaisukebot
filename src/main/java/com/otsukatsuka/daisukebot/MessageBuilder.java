@@ -20,7 +20,7 @@ public class MessageBuilder {
         private List<Message> messageList = new ArrayList<>();
         private List<GeneratorType> generatorTypes = new ArrayList<>();
         private Map<String, Object> parameters;
-        
+
         Builder(Map<String, Object> parameters){
             this.parameters = parameters;
         }
