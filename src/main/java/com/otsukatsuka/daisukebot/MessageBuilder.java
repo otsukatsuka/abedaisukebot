@@ -36,7 +36,7 @@ public class MessageBuilder {
                     addMessage(message);
                 });
             }catch (Exception e){
-                System.out.println("Error !!! : " + e.getStackTrace());
+                System.out.println("Error !!! : " + e);
                 throw new InvalidParameterException();
             }
             return new MessageBuilder(this);
