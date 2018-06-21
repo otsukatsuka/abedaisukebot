@@ -17,7 +17,10 @@ public class MessageGeneratorBase<TMessageContent> implements MessageGeneratorIn
     }
 
     private TMessageContent getMessageContent(){
-        return (TMessageContent) parameters.getOrDefault(Consts.Parameters.MessageContent, null);
+        System.out.println("start getMessageContent");
+        TMessageContent messageContent = (TMessageContent) parameters.getOrDefault(Consts.Parameters.MessageContent, null);
+        System.out.println("end getMessageContent");
+        return messageContent;
     }
     private boolean hasSameMessageEvent(){
         return getMessageContent() != null;
