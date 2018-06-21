@@ -1,6 +1,5 @@
 package com.otsukatsuka.daisukebot;
 
-import com.linecorp.bot.model.event.message.MessageContent;
 import com.linecorp.bot.model.message.Message;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -16,10 +15,8 @@ public class MessageGeneratorBase<TMessageContent> implements MessageGeneratorIn
         this.parameters = parameters;
     }
 
-    private TMessageContent getMessageContent(){
-        System.out.println("start getMessageContent");
+    protected TMessageContent getMessageContent(){
         TMessageContent messageContent = (TMessageContent) parameters.getOrDefault(Consts.Parameters.MessageContent, null);
-        System.out.println("end getMessageContent");
         return messageContent;
     }
     private boolean hasSameMessageEvent(){
@@ -34,6 +31,14 @@ public class MessageGeneratorBase<TMessageContent> implements MessageGeneratorIn
         throw new NotImplementedException();
     }
 
+    protected <T> T as(Object obj, Class<T> clazz) {
+        if( !clazz.isInstance(obj) ) {
+            return null;
+        }
+        return clazz.cast(obj);
+    }
+
+
     @Override
     public <TMessageGenerator extends MessageGeneratorInterface> TMessageGenerator createGenerator(Map<String, Object> parameters) {
         return null;
@@ -42,7 +47,10 @@ public class MessageGeneratorBase<TMessageContent> implements MessageGeneratorIn
     @Override
     public Message action() {
         if(hasSameMessageEvent()){
-            return createFromMessageEvent(getMessageContent());
+            System.out.println("start action " + "this : " +  this.getClass() + " message content : " + getMessageContent().getClass());
+            Message message = createFromMessageEvent(getMessageContent());
+            System.out.println("end action");
+            return message;
         }
         return create(parameters);
     }

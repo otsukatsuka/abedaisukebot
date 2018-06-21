@@ -1,5 +1,6 @@
 package com.otsukatsuka.daisukebot;
 
+import com.linecorp.bot.model.event.message.MessageContent;
 import com.otsukatsuka.daisukebot.Enums.GeneratorType;
 import com.linecorp.bot.model.message.Message;
 
@@ -19,7 +20,7 @@ public class MessageBuilder {
         private List<Message> messageList = new ArrayList<>();
         private List<GeneratorType> generatorTypes = new ArrayList<>();
         private Map<String, Object> parameters;
-
+        
         Builder(Map<String, Object> parameters){
             this.parameters = parameters;
         }
