@@ -5,6 +5,7 @@ import com.linecorp.bot.model.message.Message;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +38,13 @@ public class MessageBuilder {
                 });
             }catch (Exception e){
                 System.out.println("Error !!! : " + e);
-                throw new InvalidParameterException();
+                Map<String, Object> parameters = new HashMap<String, Object>(){
+                    {
+                        put(Consts.Parameters.Text.Text, e);
+                    }
+                };
+                Message message = GeneratorType.EchoTextMessage.of(parameters).action();
+                addMessage(message);
             }
             return new MessageBuilder(this);
         }
