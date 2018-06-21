@@ -1,7 +1,6 @@
 package com.otsukatsuka.daisukebot;
 
-import com.linecorp.bot.model.event.message.MessageContent;
-
+import java.util.Map;
 import java.util.Objects;
 
 public class Enums {
@@ -18,10 +17,10 @@ public class Enums {
             this.messageGenerator = messageGenerator;
         }
 
-        public MessageGeneratorInterface of(MessageContent messageContent){
+        public MessageGeneratorInterface of(Map<String, Object> parameters){
             for (GeneratorType generatorType : GeneratorType.values()) {
                 if (Objects.equals(generatorType.generatorCode, generatorCode))
-                    return generatorType.messageGenerator.generate(messageContent);
+                    return generatorType.messageGenerator.createGenerator(parameters);
             }
             throw new IllegalArgumentException("invalid generator");
         }

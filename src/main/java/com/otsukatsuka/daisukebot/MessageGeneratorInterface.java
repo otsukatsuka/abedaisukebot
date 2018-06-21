@@ -1,11 +1,10 @@
 package com.otsukatsuka.daisukebot;
-
-import com.linecorp.bot.model.event.message.MessageContent;
 import com.linecorp.bot.model.message.Message;
 
-public interface MessageGeneratorInterface{
+import java.util.Map;
 
-    <TMessageGenerator extends MessageGeneratorInterface> TMessageGenerator generate(MessageContent messageContent);
+public interface MessageGeneratorInterface{
+    <TMessageGenerator extends MessageGeneratorInterface> TMessageGenerator createGenerator(Map<String,Object> params);
     Message action();
 }
 

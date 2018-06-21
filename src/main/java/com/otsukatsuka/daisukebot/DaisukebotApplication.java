@@ -28,7 +28,13 @@ public class DaisukebotApplication {
 	@EventMapping
     public List<Message> handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
-        return new MessageBuilder.Builder(event.getMessage()).set(GeneratorType.EchoTextMessage).set(GeneratorType.StickerMessage).set(GeneratorType.EchoTextMessage).build().getMessageList();
+
+        MessageProvider messageProvider = new MessageProvider();
+
+        if(event.getMessage().getText().equals("おはよう")){
+            return messageProvider.EchoTextMessageAndSticker(event.getMessage(), "1", "13");
+        }
+        return messageProvider.EchoTextMessage(event.getMessage());
     }
 
     @EventMapping

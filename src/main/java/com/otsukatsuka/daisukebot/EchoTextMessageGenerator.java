@@ -1,31 +1,32 @@
 package com.otsukatsuka.daisukebot;
 
-import com.linecorp.bot.model.event.message.MessageContent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TextMessage;
 
+import java.util.Map;
+
 public class EchoTextMessageGenerator extends MessageGeneratorBase<TextMessageContent> {
 
-    private EchoTextMessageGenerator(TextMessageContent textMessageContent) {
-        super(textMessageContent);
+    private EchoTextMessageGenerator(Map<String, Object> parameters) {
+        super(parameters);
     }
 
-    public EchoTextMessageGenerator(){}
+    EchoTextMessageGenerator(){}
 
     @Override
-    public <TMessageGenerator extends MessageGeneratorInterface> TMessageGenerator generate(MessageContent messageContent) {
-        TextMessageContent textMessageContent = as(messageContent, TextMessageContent.class);
-        return (TMessageGenerator) new EchoTextMessageGenerator(textMessageContent);
+    public <TMessageGenerator extends MessageGeneratorInterface> TMessageGenerator createGenerator(Map<String, Object> parameters) {
+        return (TMessageGenerator) new EchoTextMessageGenerator(parameters);
     }
 
     @Override
-    protected Message generateFromMessageEvent(TextMessageContent textMessageContent) {
+    protected Message createFromMessageEvent(TextMessageContent textMessageContent) {
         return new TextMessage(textMessageContent.getText());
     }
 
     @Override
-    protected Message generate() {
-        return new TextMessage("やあ！");
+    protected Message create(Map<String,Object> parameters) {
+        String text = (String) parameters.getOrDefault(Consts.Parameters.Text.Text, "");
+        return new TextMessage(text);
     }
 }

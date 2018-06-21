@@ -1,25 +1,25 @@
 package com.otsukatsuka.daisukebot;
 
 import com.otsukatsuka.daisukebot.Enums.GeneratorType;
-import com.linecorp.bot.model.event.message.MessageContent;
 import com.linecorp.bot.model.message.Message;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class MessageBuilder {
 
     private List<Message> messageList;
 
-    public static class Builder{
+    static class Builder{
 
         private List<Message> messageList = new ArrayList<>();
         private List<GeneratorType> generatorTypes = new ArrayList<>();
-        private final MessageContent messageContent;
+        private Map<String, Object> parameters;
 
-        Builder(MessageContent messageContent){
-            this.messageContent = messageContent;
+        Builder(Map<String, Object> parameters){
+            this.parameters = parameters;
         }
 
         Builder set(GeneratorType generatorType){
@@ -29,7 +29,7 @@ public class MessageBuilder {
 
         MessageBuilder build(){
             generatorTypes.forEach(generatorType -> {
-                Message message = generatorType.of(this.messageContent).action();
+                Message message = generatorType.of(this.parameters).action();
                 System.out.println("add message : " + message);
                 addMessage(message);
             });
@@ -45,7 +45,7 @@ public class MessageBuilder {
         this.messageList = builder.messageList;
     }
 
-    public List<Message> getMessageList() {
+    List<Message> getMessageList() {
         System.out.println("messageList : " + this.messageList);
         return this.messageList;
     }
