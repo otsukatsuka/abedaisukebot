@@ -1,5 +1,6 @@
 package com.otsukatsuka.daisukebot;
 
+import com.linecorp.bot.model.event.message.MessageContent;
 import com.linecorp.bot.model.message.Message;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 

@@ -3,6 +3,7 @@ package com.otsukatsuka.daisukebot;
 import com.otsukatsuka.daisukebot.Enums.GeneratorType;
 import com.linecorp.bot.model.message.Message;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,11 +29,16 @@ public class MessageBuilder {
         }
 
         MessageBuilder build(){
-            generatorTypes.forEach(generatorType -> {
-                Message message = generatorType.of(this.parameters).action();
-                System.out.println("add message : " + message);
-                addMessage(message);
-            });
+            try {
+                generatorTypes.forEach(generatorType -> {
+                    Message message = generatorType.of(this.parameters).action();
+                    System.out.println("add message : " + message);
+                    addMessage(message);
+                });
+            }catch (Exception e){
+                System.out.println("Error !!! : " + e.getStackTrace());
+                throw new InvalidParameterException();
+            }
             return new MessageBuilder(this);
         }
 
