@@ -34,7 +34,6 @@ public class EchoStickerMessageGenerator extends MessageGeneratorBase<StickerMes
     protected Message create(Map<String,Object> parameters){
         String packageId = (String) parameters.getOrDefault(Consts.Parameters.Sticker.PackageId, "1");
         String stickerId = (String) parameters.getOrDefault(Consts.Parameters.Sticker.StickerId, "1");
-
         return new StickerMessage(packageId, stickerId);
     }
 }

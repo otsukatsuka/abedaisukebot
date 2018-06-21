@@ -1,5 +1,6 @@
 package com.otsukatsuka.daisukebot;
 
+import ch.qos.logback.classic.boolex.GEventEvaluator;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.otsukatsuka.daisukebot.Enums.GeneratorType;
 
@@ -28,6 +29,14 @@ public class MessageProvider {
 
         return new MessageBuilder.Builder(getParameters())
                 .set(GeneratorType.EchoTextMessage)
+                .set(GeneratorType.StickerMessage)
+                .build()
+                .getMessageList();
+    }
+
+    public List<Message> ErrorMessage(){
+        setParameters(Consts.Parameters.Sticker.StickerId, 1);
+        return new MessageBuilder.Builder(getParameters())
                 .set(GeneratorType.StickerMessage)
                 .build()
                 .getMessageList();

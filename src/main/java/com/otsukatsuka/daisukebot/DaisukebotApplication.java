@@ -34,6 +34,9 @@ public class DaisukebotApplication {
         if(event.getMessage().getText().equals("おはよう")){
             return messageProvider.EchoTextMessageAndSticker(event.getMessage(), "1", "13");
         }
+        if(event.getMessage().getText().equals("エラー")){
+            return messageProvider.ErrorMessage();
+        }
         return messageProvider.EchoTextMessage(event.getMessage());
     }
 
