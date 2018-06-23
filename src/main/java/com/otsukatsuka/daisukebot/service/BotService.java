@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +24,7 @@ public class BotService {
 
     private List<MessageText> getAllReplyMessageByBotType(int botType){
         System.out.println("in getAllReplyMessageByBotType");
-        List<MessageText> messageTextList = messageTextRepository.selectAll();
+        List<MessageText> messageTextList = messageTextRepository.findAll();
         messageTextList.forEach(x -> System.out.println(x.getMessage()));
         return messageTextList.stream().filter(x -> x.getBotType() == botType).collect(Collectors.toList());
     }
@@ -37,8 +36,6 @@ public class BotService {
     private Optional<Integer> getOptionalBotType(String text){
 
         List<Bot> list = botRepository.findAll();
-        list.forEach(x -> System.out.println("botid: " + x.getBotId() + "bottype: " + x.getBotType() + "nick: " + x.getNickname()));
-
 
         Optional<String> containNickName = getContainNickName(list.stream().map(x -> x.getNickname()).collect(Collectors.toList()), text);
 

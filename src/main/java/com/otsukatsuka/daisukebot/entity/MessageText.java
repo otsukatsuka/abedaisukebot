@@ -3,15 +3,26 @@ package com.otsukatsuka.daisukebot.entity;
 import javax.persistence.*;
 
 @Entity
-@NamedQuery(name = "selectAll", query = "select * from message_text order by bot_type desc")
+@Table(name = "message_text")
 public class MessageText {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int messageId;
+
     @Column(name = "bot_type")
     private int botType;
 
     @Column(name = "message")
     private String message;
+
+    public int getMessageId(){
+        return this.messageId;
+    }
+
+    public void setMessageId(int messageId){
+        this.message = message;
+    }
 
     public int getBotType(){
         return this.botType;
