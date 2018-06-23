@@ -39,7 +39,7 @@ public class DaisukebotApplication {
         if(!messageOptional.isPresent())
             return null;
 
-        return messageProvider.EchoSetTextMessage("botId" + String.valueOf(messageOptional.get()));
+        return messageProvider.EchoSetTextMessage(messageOptional.get());
     }
 
     @EventMapping
