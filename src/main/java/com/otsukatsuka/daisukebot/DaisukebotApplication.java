@@ -6,6 +6,7 @@ import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 
 import com.otsukatsuka.daisukebot.service.BotService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -25,6 +26,8 @@ public class DaisukebotApplication {
         SpringApplication.run(DaisukebotApplication.class, args);
 	}
 
+	@Autowired BotService botService;
+
 	@EventMapping
     public List<Message> handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
@@ -37,8 +40,8 @@ public class DaisukebotApplication {
         if(event.getMessage().getText().equals("エラー")){
             return messageProvider.ErrorMessage();
         }
-
-        int botId = new BotService().getBotId(event.getMessage().getText());
+        System.out.println("botService " + botService);
+        int botId = botService.getBotId(event.getMessage().getText());
 
         return messageProvider.EchoOptionalTextMessage("botId" + String.valueOf(botId));
     }
