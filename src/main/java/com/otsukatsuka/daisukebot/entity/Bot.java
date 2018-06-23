@@ -1,4 +1,4 @@
-package com.otsukatsuka.daisukebot.model;
+package com.otsukatsuka.daisukebot.entity;
 
 import javax.persistence.*;
 

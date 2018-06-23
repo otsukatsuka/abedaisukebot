@@ -5,7 +5,6 @@ import com.linecorp.bot.model.message.LocationMessage;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 
-import com.otsukatsuka.daisukebot.model.Bot;
 import com.otsukatsuka.daisukebot.service.BotService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

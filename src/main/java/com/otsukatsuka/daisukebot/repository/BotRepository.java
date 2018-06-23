@@ -1,9 +1,8 @@
 package com.otsukatsuka.daisukebot.repository;
-import com.otsukatsuka.daisukebot.model.Bot;
+import com.otsukatsuka.daisukebot.entity.Bot;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-@Repository
-public interface BotRepository extends JpaRepository<Bot,Integer> {
+public interface BotRepository extends JpaRepository<Bot,Integer>, JpaSpecificationExecutor<Bot> {
 
 }
