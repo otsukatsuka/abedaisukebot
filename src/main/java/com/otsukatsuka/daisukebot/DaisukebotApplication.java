@@ -37,8 +37,8 @@ public class DaisukebotApplication {
 
         Optional<Integer> botIdOptional = botService.getOptionalBotId(event.getMessage().getText());
         if(!botIdOptional.isPresent())
-            return messageProvider.EchoOptionalTextMessage(Consts.EmptyString);
-        
+            return null;
+
         return messageProvider.EchoOptionalTextMessage("botId" + String.valueOf(botIdOptional.get()));
     }
 
