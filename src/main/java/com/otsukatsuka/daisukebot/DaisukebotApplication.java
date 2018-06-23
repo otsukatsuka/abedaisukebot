@@ -1,11 +1,12 @@
 package com.otsukatsuka.daisukebot;
 
-import com.otsukatsuka.daisukebot.Enums.GeneratorType;
 import com.linecorp.bot.model.event.message.LocationMessageContent;
 import com.linecorp.bot.model.message.LocationMessage;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 
+import com.otsukatsuka.daisukebot.model.Bot;
+import com.otsukatsuka.daisukebot.service.BotService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -37,7 +38,10 @@ public class DaisukebotApplication {
         if(event.getMessage().getText().equals("エラー")){
             return messageProvider.ErrorMessage();
         }
-        return messageProvider.EchoTextMessage(event.getMessage());
+        
+        int botId = new BotService().getBotId(event.getMessage().getText());
+
+        return messageProvider.EchoOptionalTextMessage("botId" + String.valueOf(botId));
     }
 
     @EventMapping

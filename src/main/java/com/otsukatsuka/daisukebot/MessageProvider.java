@@ -40,6 +40,14 @@ public class MessageProvider {
                 .getMessageList();
     }
 
+    public List<Message> EchoOptionalTextMessage(String text){
+        setParameters(Consts.Parameters.Text.Text, text);
+        return new MessageBuilder.Builder(getParameters())
+                .set(GeneratorType.EchoTextMessage)
+                .build()
+                .getMessageList();
+    }
+
     public List<Message> ErrorMessage(){
         setParameters(Consts.Parameters.Sticker.StickerId, 1);
         return new MessageBuilder.Builder(getParameters())
