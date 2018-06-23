@@ -3,6 +3,9 @@ package com.otsukatsuka.daisukebot;
 import java.util.Map;
 import java.util.Objects;
 
+/*
+ * Enum管理クラス
+ */
 public class Enums {
 
     public enum GeneratorType {

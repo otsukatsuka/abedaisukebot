@@ -1,5 +1,8 @@
 package com.otsukatsuka.daisukebot;
 
+/*
+ * 定数クラス
+ */
 public class Consts {
 
     public static class Parameters{
