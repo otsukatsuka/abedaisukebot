@@ -61,22 +61,18 @@ public class BotService {
         return Optional.ofNullable(botNickName);
     }
 
-    public Optional<String> getReplayTextMessage(String receivedText){
+    /*
+     * 受け取ったメッセージから返信内容を決めて返す
+     */
+    public Optional<String> getReplyTextMessage(String receivedText){
         Optional<Integer> botType = getOptionalBotType(receivedText);
 
         if(!botType.isPresent()){
             return Optional.ofNullable(null);
         }
-
         List<MessageText> messageTextList = getAllReplyMessageByBotType(botType.get());
 
-        System.out.println("before shuffle");
-        messageTextList.forEach(x -> System.out.println(x.getMessage()));
-
         Collections.shuffle(messageTextList);
-
-        System.out.println("before shuffle");
-        messageTextList.forEach(x -> System.out.println(x.getMessage()));
 
         return messageTextList.stream().map(x -> x.getMessage()).findFirst();
     }

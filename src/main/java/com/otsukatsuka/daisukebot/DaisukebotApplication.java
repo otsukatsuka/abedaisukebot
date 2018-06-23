@@ -35,7 +35,7 @@ public class DaisukebotApplication {
 
         MessageProvider messageProvider = new MessageProvider();
 
-        Optional<String> messageOptional = botService.getReplayTextMessage(event.getMessage().getText());
+        Optional<String> messageOptional = botService.getReplyTextMessage(event.getMessage().getText());
         if(!messageOptional.isPresent())
             return null;
 
