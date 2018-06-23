@@ -38,7 +38,7 @@ public class DaisukebotApplication {
         if(event.getMessage().getText().equals("エラー")){
             return messageProvider.ErrorMessage();
         }
-        
+
         int botId = new BotService().getBotId(event.getMessage().getText());
 
         return messageProvider.EchoOptionalTextMessage("botId" + String.valueOf(botId));

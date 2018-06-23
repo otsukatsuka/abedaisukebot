@@ -23,6 +23,11 @@ public class BotService {
 
     public int getBotId(String nickName){
         List<Bot> list = botRepository.findAll();
+
+        System.out.println("count : " + String.valueOf(list.size()));
+
+        list.forEach(x -> System.out.println("ニックネーム" + x.getNickname()));
+
         return list.stream().filter(x -> x.getNickname().equals(nickName)).findFirst().get().getBotId();
     }
 }
