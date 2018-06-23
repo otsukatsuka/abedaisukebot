@@ -4,6 +4,7 @@ package com.otsukatsuka.daisukebot;
  */
 public class Consts {
 
+    public static String EmptyString = "";
     public static class Parameters{
         public static final String MessageContent = "MessageContent";
 

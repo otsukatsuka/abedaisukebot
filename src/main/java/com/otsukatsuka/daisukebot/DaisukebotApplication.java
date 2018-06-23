@@ -16,6 +16,7 @@ import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @SpringBootApplication
@@ -34,16 +35,11 @@ public class DaisukebotApplication {
 
         MessageProvider messageProvider = new MessageProvider();
 
-        if(event.getMessage().getText().equals("おはよう")){
-            return messageProvider.EchoTextMessageAndSticker(event.getMessage(), "1", "13");
-        }
-        if(event.getMessage().getText().equals("エラー")){
-            return messageProvider.ErrorMessage();
-        }
-        System.out.println("botService " + botService);
-        int botId = botService.getBotId(event.getMessage().getText());
-
-        return messageProvider.EchoOptionalTextMessage("botId" + String.valueOf(botId));
+        Optional<Integer> botIdOptional = botService.getOptionalBotId(event.getMessage().getText());
+        if(!botIdOptional.isPresent())
+            return messageProvider.EchoOptionalTextMessage(Consts.EmptyString);
+        
+        return messageProvider.EchoOptionalTextMessage("botId" + String.valueOf(botIdOptional.get()));
     }
 
     @EventMapping
