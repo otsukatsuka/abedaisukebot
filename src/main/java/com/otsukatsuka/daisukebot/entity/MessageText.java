@@ -3,7 +3,6 @@ package com.otsukatsuka.daisukebot.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "message_text")
 @NamedQuery(name = "selectAll", query = "select * from message_text order by bot_type desc")
 public class MessageText {
 
