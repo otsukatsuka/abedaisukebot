@@ -22,6 +22,8 @@ public class BotService {
 
     public int getBotId(String nickName){
         System.out.println("getBotId : " + nickName);
+        System.out.println("botRepository" + botRepository);
+
         List<Bot> list = botRepository.findAll();
 
         System.out.println("count : " + String.valueOf(list.size()));
