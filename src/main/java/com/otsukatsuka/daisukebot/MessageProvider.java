@@ -40,7 +40,7 @@ public class MessageProvider {
                 .getMessageList();
     }
 
-    public List<Message> EchoOptionalTextMessage(String text){
+    public List<Message> EchoSetTextMessage(String text){
         setParameters(Consts.Parameters.Text.Text, text);
         return new MessageBuilder.Builder(getParameters())
                 .set(GeneratorType.EchoTextMessage)

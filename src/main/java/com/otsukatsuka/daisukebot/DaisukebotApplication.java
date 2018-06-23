@@ -35,11 +35,11 @@ public class DaisukebotApplication {
 
         MessageProvider messageProvider = new MessageProvider();
 
-        Optional<Integer> botIdOptional = botService.getOptionalBotId(event.getMessage().getText());
-        if(!botIdOptional.isPresent())
+        Optional<String> messageOptional = botService.getReplayTextMessage(event.getMessage().getText());
+        if(!messageOptional.isPresent())
             return null;
 
-        return messageProvider.EchoOptionalTextMessage("botId" + String.valueOf(botIdOptional.get()));
+        return messageProvider.EchoSetTextMessage("botId" + String.valueOf(messageOptional.get()));
     }
 
     @EventMapping
