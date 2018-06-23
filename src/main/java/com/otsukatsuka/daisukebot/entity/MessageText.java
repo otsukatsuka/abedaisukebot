@@ -2,11 +2,14 @@ package com.otsukatsuka.daisukebot.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "message_text")
 public class MessageText {
+
+    @Id
     @Column(name = "bot_type")
     private int botType;
 
