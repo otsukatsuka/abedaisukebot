@@ -24,6 +24,7 @@ public class BotService {
     MessageTextRepository messageTextRepository;
 
     private List<MessageText> getAllReplyMessageByBotType(int botType){
+        System.out.println("in getAllReplyMessageByBotType");
         List<MessageText> messageTextList = messageTextRepository.findAll();
         return messageTextList.stream().filter(x -> x.getBotType() == botType).collect(Collectors.toList());
     }
@@ -69,7 +70,13 @@ public class BotService {
 
         List<MessageText> messageTextList = getAllReplyMessageByBotType(botType.get());
 
+        System.out.println("before shuffle");
+        messageTextList.forEach(x -> System.out.println(x.getMessage()));
+
         Collections.shuffle(messageTextList);
+
+        System.out.println("before shuffle");
+        messageTextList.forEach(x -> System.out.println(x.getMessage()));
 
         return messageTextList.stream().map(x -> x.getMessage()).findFirst();
     }
