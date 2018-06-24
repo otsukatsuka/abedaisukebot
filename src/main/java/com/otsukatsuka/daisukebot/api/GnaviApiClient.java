@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class GnaviApiClient {
 
-    @Autowired
-    private ConfigReader configReader;
-
     private final GAreaSmallSearchApi gAreaSmallSearchApi;
 
     private GnaviApiClient(){
@@ -20,11 +17,7 @@ public class GnaviApiClient {
     }
 
     private String getApiKey(){
-        if(configReader == null){
-            System.out.println("configReader is null");
-            return new ConfigReader().getGnaviApiKey();
-        }
-        return configReader.getGnaviApiKey();
+        return new ConfigReader().getGnaviApiKey();
     }
 
     private OkHttpClient getHttpClient(){
