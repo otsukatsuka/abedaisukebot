@@ -15,14 +15,18 @@ import java.util.Optional;
 public class GnaviApiUrlBuilder {
 
     private final Map<GnaviApiParam, String> parameters;
+    private final String baseUrl;
 
     private GnaviApiUrlBuilder(Builder builder){
         this.parameters = builder.parameters;
+        this.baseUrl = builder.baseUrl;
     }
     public static class Builder{
         private final Map<GnaviApiParam, String> parameters = new EnumMap<>(GnaviApiParam.class);
+        private final String baseUrl;
 
-        public Builder(String apiKey){
+        public Builder(String baseUrl, String apiKey){
+            this.baseUrl = baseUrl;
             set(GnaviApiParam.APIKEY, apiKey);
         }
 
@@ -53,5 +57,9 @@ public class GnaviApiUrlBuilder {
 
             return new GnaviApiUrlBuilder(this);
         }
+    }
+
+    public String buildUrl(){
+        return this.baseUrl + this.parameters;
     }
 }
