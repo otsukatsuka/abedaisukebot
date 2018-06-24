@@ -32,12 +32,14 @@ public class DaisukebotApplication {
 	@Autowired
     BotService botService;
 
+	@Autowired
+    GnaviApiClient gnaviApiClient;
+
 	@EventMapping
     public List<Message> handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
 
         if(event.getMessage().getText().equals("gnavi")){
-            GnaviApiClient gnaviApiClient = GnaviApiClient.getInstance();
             gnaviApiClient.getGAreaSmallSearchJson();
             return null;
         }

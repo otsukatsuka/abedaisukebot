@@ -13,7 +13,7 @@ public class GnaviApiClient {
 
     private final GAreaSmallSearchApi gAreaSmallSearchApi;
 
-    private GnaviApiClient(){
+    public GnaviApiClient(){
         gAreaSmallSearchApi = GAreaSmallSearchApi.getInstance(getApiKey(), getHttpClient());
     }
 
