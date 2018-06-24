@@ -11,7 +11,7 @@ public class JsonConverter {
 
     public static <T> T deserialize(final String json, final Class<T> clazz) throws IOException {
 
-        T object = null;
+        T object;
 
         if(json == null){
             throw new InvalidParameterException("json is null");
