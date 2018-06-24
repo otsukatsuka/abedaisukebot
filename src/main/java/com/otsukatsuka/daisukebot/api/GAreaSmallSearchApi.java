@@ -9,6 +9,7 @@ import okhttp3.Response;
 
 import java.io.IOException;
 
+
 public class GAreaSmallSearchApi {
 
     private final String apiKey;
@@ -20,6 +21,7 @@ public class GAreaSmallSearchApi {
     }
 
     public static GAreaSmallSearchApi getInstance(String apiKey, OkHttpClient httpClient){
+        System.out.println("GAreaSmallSearchApi getInstance");
         return new GAreaSmallSearchApi(apiKey, httpClient);
     }
 

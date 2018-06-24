@@ -26,6 +26,7 @@ public class GnaviApiClient {
 
     public String getGAreaSmallSearchJson(){
         GAreaSmallSearchApi gAreaSmallSearchApi = GAreaSmallSearchApi.getInstance(getApiKey(), getHttpClient());
+        System.out.println("GAreaSmallSearchApi = " + gAreaSmallSearchApi);
         return gAreaSmallSearchApi.getUrlFormatJson();
     }
 }
