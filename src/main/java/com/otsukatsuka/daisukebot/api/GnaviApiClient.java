@@ -15,7 +15,7 @@ public class GnaviApiClient {
 
     private String getApiKey(){
         System.out.println("apiConfig = " + apiConfig);
-        String key = apiConfig.getGnaviApiKey();
+        String key = apiConfig.getKey();
         System.out.println("apikey = " + key);
 
         return key;

@@ -4,16 +4,16 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "settings.api")
+@ConfigurationProperties(prefix = "api")
 public class ApiConfig {
 
-    private String gnaviApiKey;
+    private String key;
 
-    public String getGnaviApiKey(){
-        return this.gnaviApiKey;
+    public String getKey(){
+        return this.key;
     }
 
-    public void setGnaviApiKey(String gnaviApiKey){
-        this.gnaviApiKey = gnaviApiKey;
+    public void setKey(String key){
+        this.key = key;
     }
 }
