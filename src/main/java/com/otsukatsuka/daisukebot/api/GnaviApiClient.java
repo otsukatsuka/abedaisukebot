@@ -14,8 +14,11 @@ public class GnaviApiClient {
     public GnaviApiClient() { }
 
     private String getApiKey(){
-        System.out.println("getApiKey");
-        return apiConfig.getGnaviApiKey();
+        System.out.println("apiConfig = " + apiConfig);
+        String key = apiConfig.getGnaviApiKey();
+        System.out.println("apikey = " + key);
+
+        return key;
     }
 
     private OkHttpClient getHttpClient(){
