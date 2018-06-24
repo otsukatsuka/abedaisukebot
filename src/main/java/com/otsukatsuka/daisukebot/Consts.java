@@ -21,6 +21,9 @@ public class Consts {
     }
 
     public static class Api{
-        public static String GnaviApiUrl = "https://api.gnavi.co.jp/RestSearchAPI/20150630/?";
+        public static class GnaviApi{
+            public static String GnaviApiUrl = "https://api.gnavi.co.jp/RestSearchAPI/20150630/?";
+            public static String GAreaSmallSearchApiUrl = "https://api.gnavi.co.jp/master/GAreaSmallSearchAPI/20150630/?";
+        }
     }
 }
