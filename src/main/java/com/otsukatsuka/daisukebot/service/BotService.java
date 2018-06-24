@@ -24,7 +24,6 @@ public class BotService {
 
     private List<MessageText> getAllReplyMessageByBotType(int botType){
         List<MessageText> messageTextList = messageTextRepository.findAll();
-        messageTextList.forEach(x -> System.out.println(x.getMessage()));
         return messageTextList.stream().filter(x -> x.getBotType() == botType).collect(Collectors.toList());
     }
 

@@ -21,7 +21,6 @@ public class GAreaSmallSearchApi {
     }
 
     public static GAreaSmallSearchApi getInstance(String apiKey, OkHttpClient httpClient){
-        System.out.println("GAreaSmallSearchApi getInstance");
         return new GAreaSmallSearchApi(apiKey, httpClient);
     }
 

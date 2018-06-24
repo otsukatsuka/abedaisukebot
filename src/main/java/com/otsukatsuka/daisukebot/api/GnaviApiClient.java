@@ -13,10 +13,7 @@ public class GnaviApiClient {
     public GnaviApiClient() { }
 
     private String getApiKey(){
-        System.out.println("apiConfig = " + apiConfig);
         String key = apiConfig.getKey();
-        System.out.println("apikey = " + key);
-
         return key;
     }
 
@@ -26,7 +23,6 @@ public class GnaviApiClient {
 
     public String getGAreaSmallSearchJson(){
         GAreaSmallSearchApi gAreaSmallSearchApi = GAreaSmallSearchApi.getInstance(getApiKey(), getHttpClient());
-        System.out.println("GAreaSmallSearchApi = " + gAreaSmallSearchApi);
         return gAreaSmallSearchApi.getUrlFormatJson();
     }
 }

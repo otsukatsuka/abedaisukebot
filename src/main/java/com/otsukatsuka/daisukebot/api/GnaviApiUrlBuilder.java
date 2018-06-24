@@ -35,7 +35,6 @@ public class GnaviApiUrlBuilder {
         }
 
         public Builder setFormatType(String formatType){
-
             // formatTypeが有効なものか確認
             Optional<GnaviApiFormatType> any = EnumSet.allOf(GnaviApiFormatType.class)
                     .stream()
@@ -46,12 +45,12 @@ public class GnaviApiUrlBuilder {
                 return this;
 
             parameters.put(GnaviApiParam.Format, formatType);
+
             return this;
         }
 
         public GnaviApiUrlBuilder build(){
-
-            if(!parameters.containsKey(GnaviApiParam.APIKEY) || !parameters.get(GnaviApiParam.APIKEY).equals("")){
+            if(!parameters.containsKey(GnaviApiParam.APIKEY) || parameters.get(GnaviApiParam.APIKEY).equals("")){
                 throw new NullPointerException();
             }
 
