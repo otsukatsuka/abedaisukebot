@@ -1,6 +1,5 @@
 package com.otsukatsuka.daisukebot.api;
 
-import com.otsukatsuka.daisukebot.Consts;
 import com.otsukatsuka.daisukebot.Enums.GnaviApiParam;
 import com.otsukatsuka.daisukebot.Enums.GnaviApiFormatType;
 

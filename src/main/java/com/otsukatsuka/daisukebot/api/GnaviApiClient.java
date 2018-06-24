@@ -25,7 +25,6 @@ public class GnaviApiClient {
 
     public String getGAreaSmallSearchJson() throws IOException {
         GAreaSmallSearchApi gAreaSmallSearchApi = GAreaSmallSearchApi.getInstance(getApiKey(), getHttpClient());
-        String json = "";
         return gAreaSmallSearchApi.getJson();
     }
 }
