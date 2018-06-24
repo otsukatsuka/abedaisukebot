@@ -1,16 +1,15 @@
 package com.otsukatsuka.daisukebot.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ConfigReader {
+@ConfigurationProperties(prefix = "settings.api")
+public class ApiConfig {
 
-    @Value("${settings.api.gnavi-api-key}")
     private String gnaviApiKey;
 
     public String getGnaviApiKey(){
-        System.out.println("apikey = " + gnaviApiKey);
         return this.gnaviApiKey;
     }
 

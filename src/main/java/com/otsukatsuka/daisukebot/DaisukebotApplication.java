@@ -6,7 +6,6 @@ import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 
 import com.otsukatsuka.daisukebot.api.GnaviApiClient;
-import com.otsukatsuka.daisukebot.config.ConfigReader;
 import com.otsukatsuka.daisukebot.service.BotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
