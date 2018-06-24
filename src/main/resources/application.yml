@@ -1,0 +1,2 @@
+api:
+  key: ${GNAVI_API_KEY:key}
