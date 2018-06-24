@@ -32,7 +32,6 @@ public class MessageBuilder {
             try {
                 generatorTypes.forEach(generatorType -> {
                     Message message = generatorType.of(this.parameters).action();
-                    System.out.println("add message : " + message);
                     addMessage(message);
                 });
             }catch (Exception e){
@@ -58,7 +57,6 @@ public class MessageBuilder {
     }
 
     List<Message> getMessageList() {
-        System.out.println("messageList : " + this.messageList);
         return this.messageList;
     }
 
