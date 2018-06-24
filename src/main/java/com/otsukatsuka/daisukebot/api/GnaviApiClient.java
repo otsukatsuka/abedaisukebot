@@ -4,6 +4,8 @@ import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+
 @Component
 public class GnaviApiClient {
 
@@ -21,8 +23,9 @@ public class GnaviApiClient {
         return new OkHttpClient();
     }
 
-    public String getGAreaSmallSearchJson(){
+    public String getGAreaSmallSearchJson() throws IOException {
         GAreaSmallSearchApi gAreaSmallSearchApi = GAreaSmallSearchApi.getInstance(getApiKey(), getHttpClient());
-        return gAreaSmallSearchApi.getUrlFormatJson();
+        String json = "";
+        return gAreaSmallSearchApi.getJson();
     }
 }

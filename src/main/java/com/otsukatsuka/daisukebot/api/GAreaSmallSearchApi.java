@@ -24,7 +24,7 @@ public class GAreaSmallSearchApi {
         return new GAreaSmallSearchApi(apiKey, httpClient);
     }
 
-    public String getUrlFormatJson(){
+    private String getUrlFormatJson(){
         return new GnaviApiUrlBuilder
                 .Builder(Consts.Api.GnaviApi.Url.GAreaSmallSearchApiUrl, this.apiKey)
                 .setFormatType(GnaviApiFormatType.Json.getFormatType())
@@ -32,7 +32,7 @@ public class GAreaSmallSearchApi {
                 .buildUrl();
     }
 
-    public String getUrlFromatXml(){
+    private String getUrlFromatXml(){
         return new GnaviApiUrlBuilder
                 .Builder(Consts.Api.GnaviApi.Url.GAreaSmallSearchApiUrl, this.apiKey)
                 .setFormatType(GnaviApiFormatType.Json.getFormatType())

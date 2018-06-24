@@ -16,6 +16,7 @@ import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ public class DaisukebotApplication {
     GnaviApiClient gnaviApiClient;
 
 	@EventMapping
-    public List<Message> handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
+    public List<Message> handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws IOException {
         System.out.println("event: " + event);
 
         if(event.getMessage().getText().equals("gnavi")){
