@@ -1,4 +1,4 @@
-package com.otsukatsuka.daisukebot.config;
+package com.otsukatsuka.daisukebot.api;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
