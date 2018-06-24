@@ -26,4 +26,8 @@ public class GnaviApiClient {
     private OkHttpClient getHttpClient(){
         return new OkHttpClient();
     }
+
+    public String getGAreaSmallSearchJson(){
+        return gAreaSmallSearchApi.getUrlFormatJson();
+    }
 }

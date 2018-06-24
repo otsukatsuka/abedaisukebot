@@ -5,6 +5,7 @@ import com.linecorp.bot.model.message.LocationMessage;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 
+import com.otsukatsuka.daisukebot.api.GnaviApiClient;
 import com.otsukatsuka.daisukebot.service.BotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -33,11 +34,17 @@ public class DaisukebotApplication {
     public List<Message> handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
 
-        MessageProvider messageProvider = new MessageProvider();
+        if(event.getMessage().getText().equals("gnavi")){
+            GnaviApiClient gnaviApiClient = GnaviApiClient.getInstance();
+            gnaviApiClient.getGAreaSmallSearchJson();
+            return null;
+        }
 
         Optional<String> messageOptional = botService.getReplyTextMessage(event.getMessage().getText());
         if(!messageOptional.isPresent())
             return null;
+
+        MessageProvider messageProvider = new MessageProvider();
 
         return messageProvider.EchoSetTextMessage(messageOptional.get());
     }
