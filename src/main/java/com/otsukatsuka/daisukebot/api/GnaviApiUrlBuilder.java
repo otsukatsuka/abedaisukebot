@@ -59,6 +59,15 @@ public class GnaviApiUrlBuilder {
     }
 
     public String buildUrl(){
-        return this.baseUrl + this.parameters;
+        String param = "";
+
+        for(Map.Entry<GnaviApiParam, String> entry : parameters.entrySet()){
+            param += entry.getKey().getParam() + "=" + entry.getValue() + "&";
+        }
+
+        if(param.length() != 0)
+            param = param.substring(0, param.length()-1);
+
+        return this.baseUrl + param;
     }
 }
