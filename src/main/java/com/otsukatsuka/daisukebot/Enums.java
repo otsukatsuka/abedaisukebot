@@ -28,4 +28,34 @@ public class Enums {
             throw new IllegalArgumentException("invalid generator");
         }
     }
+
+    public enum GnaviApiParam{
+        APIKEY(Consts.Api.GnaviApi.Parameters.Apikey),
+        Format(Consts.Api.GnaviApi.Parameters.Format);
+
+        private final String param;
+
+        GnaviApiParam(final String param){
+            this.param = param;
+        }
+
+        public String getParam(){
+            return this.param;
+        }
+    }
+
+    public enum GnaviApiFormatType{
+        Json(Consts.Api.GnaviApi.FormatType.Json),
+        Xml(Consts.Api.GnaviApi.FormatType.Xml);
+
+        private final String formatType;
+
+        GnaviApiFormatType(final String formatType){
+            this.formatType = formatType;
+        }
+
+        public String getFormatType(){
+            return this.formatType;
+        }
+    }
 }
