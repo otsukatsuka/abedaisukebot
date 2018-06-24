@@ -2,6 +2,7 @@ package com.otsukatsuka.daisukebot.api;
 
 import com.otsukatsuka.daisukebot.core.Enums.GnaviApiParam;
 import com.otsukatsuka.daisukebot.core.Enums.GnaviApiFormatType;
+import com.otsukatsuka.daisukebot.core.Enums.FreeWordCondition;
 
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -13,7 +14,7 @@ import java.util.Optional;
  */
 public class GnaviApiUrlBuilder {
 
-    private final Map<GnaviApiParam, String> parameters;
+    private final Map<GnaviApiParam, Object> parameters;
     private final String baseUrl;
 
     private GnaviApiUrlBuilder(Builder builder){
@@ -21,7 +22,7 @@ public class GnaviApiUrlBuilder {
         this.baseUrl = builder.baseUrl;
     }
     public static class Builder{
-        private final Map<GnaviApiParam, String> parameters = new EnumMap<>(GnaviApiParam.class);
+        private final Map<GnaviApiParam, Object> parameters = new EnumMap<>(GnaviApiParam.class);
         private final String baseUrl;
 
         public Builder(String baseUrl, String apiKey){
@@ -29,7 +30,7 @@ public class GnaviApiUrlBuilder {
             set(GnaviApiParam.APIKEY, apiKey);
         }
 
-        private void set(GnaviApiParam key, String value){
+        private void set(GnaviApiParam key, Object value){
             parameters.put(key, value);
         }
 
@@ -43,8 +44,32 @@ public class GnaviApiUrlBuilder {
             if(!any.isPresent())
                 return this;
 
-            parameters.put(GnaviApiParam.Format, formatType);
+            set(GnaviApiParam.Format, formatType);
 
+            return this;
+        }
+
+        public Builder setAreaCodeS(String areaCodeS){
+            set(GnaviApiParam.AreaCodeS, areaCodeS);
+            return this;
+        }
+
+        public Builder setFreeWord(String freeWord){
+            set(GnaviApiParam.FreeWord, freeWord);
+            return this;
+        }
+
+        public Builder setFreeWordCondition(int freeWordCondition){
+            // Conditionが有効なものか確認
+            Optional<FreeWordCondition> any = EnumSet.allOf(FreeWordCondition.class)
+                    .stream()
+                    .filter(x -> x.getCondition() == freeWordCondition)
+                    .findAny();
+
+            if(!any.isPresent())
+                return this;
+
+            set(GnaviApiParam.FreewordCondition, freeWordCondition);
             return this;
         }
 
@@ -60,7 +85,7 @@ public class GnaviApiUrlBuilder {
     public String buildUrl(){
         String param = "";
 
-        for(Map.Entry<GnaviApiParam, String> entry : parameters.entrySet()){
+        for(Map.Entry<GnaviApiParam, Object> entry : parameters.entrySet()){
             param += entry.getKey().getParam() + "=" + entry.getValue() + "&";
         }
 

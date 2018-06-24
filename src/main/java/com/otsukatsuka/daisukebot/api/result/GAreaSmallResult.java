@@ -1,4 +1,4 @@
-package com.otsukatsuka.daisukebot.api;
+package com.otsukatsuka.daisukebot.api.result;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -3,6 +3,7 @@ package com.otsukatsuka.daisukebot.core;
 import com.otsukatsuka.daisukebot.EchoStickerMessageGenerator;
 import com.otsukatsuka.daisukebot.EchoTextMessageGenerator;
 import com.otsukatsuka.daisukebot.MessageGeneratorInterface;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.Map;
 import java.util.Objects;
@@ -35,7 +36,10 @@ public class Enums {
 
     public enum GnaviApiParam{
         APIKEY(Consts.Api.GnaviApi.Parameters.Apikey),
-        Format(Consts.Api.GnaviApi.Parameters.Format);
+        Format(Consts.Api.GnaviApi.Parameters.Format),
+        AreaCodeS(Consts.Api.GnaviApi.Parameters.AreaSCode),
+        FreeWord(Consts.Api.GnaviApi.Parameters.FreeWord),
+        FreewordCondition(Consts.Api.GnaviApi.Parameters.FreeWordCondition);
 
         private final String param;
 
@@ -60,6 +64,21 @@ public class Enums {
 
         public String getFormatType(){
             return this.formatType;
+        }
+    }
+
+    public enum FreeWordCondition{
+        AND(Consts.Api.GnaviApi.FreeWordCondition.AND),
+        OR(Consts.Api.GnaviApi.FreeWordCondition.OR);
+
+        private final int condition;
+
+        FreeWordCondition(final int condition){
+            this.condition = condition;
+        }
+
+        public int getCondition(){
+            return this.condition;
         }
     }
 }

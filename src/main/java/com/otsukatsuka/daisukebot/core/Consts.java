@@ -31,11 +31,19 @@ public class Consts {
             public static class Parameters{
                 public static String Apikey = "keyid";
                 public static String Format = "format";
+                public static String AreaSCode = "areacode_s";
+                public static String FreeWord = "freeword";
+                public static String FreeWordCondition = "freeword_condition";
             }
 
             public static class FormatType{
                 public static String Json = "json";
                 public static String Xml = "xml";
+            }
+
+            public static class FreeWordCondition{
+                public static int AND = 1;
+                public static int OR = 2;
             }
         }
     }
