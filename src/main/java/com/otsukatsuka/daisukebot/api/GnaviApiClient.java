@@ -5,21 +5,15 @@ import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.lang.management.GarbageCollectorMXBean;
+
 @Component
 public class GnaviApiClient {
 
     @Autowired
     ConfigReader configReader;
 
-    private final GAreaSmallSearchApi gAreaSmallSearchApi;
-
-    public GnaviApiClient(){
-        gAreaSmallSearchApi = GAreaSmallSearchApi.getInstance(getApiKey(), getHttpClient());
-    }
-
-    public static GnaviApiClient getInstance(){
-        return new GnaviApiClient();
-    }
+    public GnaviApiClient() { }
 
     private String getApiKey(){
         System.out.println("getApiKey");
@@ -31,6 +25,7 @@ public class GnaviApiClient {
     }
 
     public String getGAreaSmallSearchJson(){
+        GAreaSmallSearchApi gAreaSmallSearchApi = GAreaSmallSearchApi.getInstance(getApiKey(), getHttpClient());
         return gAreaSmallSearchApi.getUrlFormatJson();
     }
 }
