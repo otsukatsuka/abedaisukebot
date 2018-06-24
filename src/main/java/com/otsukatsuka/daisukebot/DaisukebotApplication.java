@@ -32,15 +32,11 @@ public class DaisukebotApplication {
 	@Autowired
     BotService botService;
 
-	@Autowired
-    ConfigReader configReader;
-
 	@EventMapping
     public List<Message> handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
 
         if(event.getMessage().getText().equals("gnavi")){
-            System.out.println("gnavi_api_key is " + configReader.getGnaviApiKey());
             GnaviApiClient gnaviApiClient = GnaviApiClient.getInstance();
             gnaviApiClient.getGAreaSmallSearchJson();
             return null;
