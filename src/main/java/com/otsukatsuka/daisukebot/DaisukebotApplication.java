@@ -6,6 +6,7 @@ import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 
 import com.otsukatsuka.daisukebot.api.GnaviApiClient;
+import com.otsukatsuka.daisukebot.config.ConfigReader;
 import com.otsukatsuka.daisukebot.service.BotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -28,13 +29,18 @@ public class DaisukebotApplication {
         SpringApplication.run(DaisukebotApplication.class, args);
 	}
 
-	@Autowired BotService botService;
+	@Autowired
+    BotService botService;
+
+	@Autowired
+    ConfigReader configReader;
 
 	@EventMapping
     public List<Message> handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
 
         if(event.getMessage().getText().equals("gnavi")){
+            System.out.println("gnavi_api_key is " + configReader.getGnaviApiKey());
             GnaviApiClient gnaviApiClient = GnaviApiClient.getInstance();
             gnaviApiClient.getGAreaSmallSearchJson();
             return null;
