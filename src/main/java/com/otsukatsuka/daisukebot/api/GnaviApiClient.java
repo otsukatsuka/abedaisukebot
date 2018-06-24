@@ -20,6 +20,10 @@ public class GnaviApiClient {
     }
 
     private String getApiKey(){
+        if(configReader == null){
+            System.out.println("configReader is null");
+            return new ConfigReader().getGnaviApiKey();
+        }
         return configReader.getGnaviApiKey();
     }
 
