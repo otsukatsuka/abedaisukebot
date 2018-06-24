@@ -2,10 +2,14 @@ package com.otsukatsuka.daisukebot.api;
 
 public class GAreaSmallSearchApi {
 
-    private GAreaSmallSearchApi(){}
+    private final String apiKey;
 
-    public GAreaSmallSearchApi getInstance(){
-        return new GAreaSmallSearchApi();
+    private GAreaSmallSearchApi(String apiKey){
+        this.apiKey = apiKey;
+    }
+
+    public static GAreaSmallSearchApi getInstance(String apiKey){
+        return new GAreaSmallSearchApi(apiKey);
     }
 
 
