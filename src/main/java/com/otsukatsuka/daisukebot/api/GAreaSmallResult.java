@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GAreaSmall {
+public class GAreaSmallResult {
 
     @JsonProperty("areacode_s")
     public String areaCode;

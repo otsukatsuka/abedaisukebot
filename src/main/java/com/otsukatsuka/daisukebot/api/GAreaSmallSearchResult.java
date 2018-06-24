@@ -13,5 +13,5 @@ public class GAreaSmallSearchResult {
     public Map<String, String> attributes;
 
     @JsonProperty("garea_small")
-    public List<GAreaSmall> gAreaSmallSearchResult;
+    public List<GAreaSmallResult> gAreaSmallSearchResult;
 }
