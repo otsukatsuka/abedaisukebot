@@ -19,4 +19,8 @@ public class Consts {
             public static final String StickerId = "StickerId";
         }
     }
+
+    public static class Api{
+        public static String GnaviApiUrl = "https://api.gnavi.co.jp/RestSearchAPI/20150630/?";
+    }
 }
