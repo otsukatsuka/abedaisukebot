@@ -3,7 +3,9 @@ package com.otsukatsuka.daisukebot.api;
 import com.otsukatsuka.daisukebot.config.ConfigReader;
 import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class GnaviApiClient {
 
     @Autowired
