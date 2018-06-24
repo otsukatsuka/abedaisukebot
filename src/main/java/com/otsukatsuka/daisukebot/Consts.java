@@ -1,10 +1,12 @@
 package com.otsukatsuka.daisukebot;
+
 /*
  * 定数クラス
  */
 public class Consts {
 
-    public static String EmptyString = "";
+    public static final String EmptyString = "";
+
     public static class Parameters{
         public static final String MessageContent = "MessageContent";
 
