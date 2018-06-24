@@ -3,6 +3,7 @@ package com.otsukatsuka.daisukebot;
 import com.linecorp.bot.model.event.message.StickerMessageContent;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.StickerMessage;
+import com.otsukatsuka.daisukebot.core.Consts;
 
 import java.util.Map;
 
@@ -17,7 +18,7 @@ public class EchoStickerMessageGenerator extends MessageGeneratorBase<StickerMes
         return StickerMessageContent.class;
     }
 
-    EchoStickerMessageGenerator() {
+    public EchoStickerMessageGenerator() {
     }
 
     @Override

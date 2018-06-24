@@ -1,7 +1,7 @@
 package com.otsukatsuka.daisukebot.api;
 
-import com.otsukatsuka.daisukebot.Enums.GnaviApiParam;
-import com.otsukatsuka.daisukebot.Enums.GnaviApiFormatType;
+import com.otsukatsuka.daisukebot.core.Enums.GnaviApiParam;
+import com.otsukatsuka.daisukebot.core.Enums.GnaviApiFormatType;
 
 import java.util.EnumMap;
 import java.util.EnumSet;

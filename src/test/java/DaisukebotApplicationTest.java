@@ -1,12 +1,6 @@
-import com.linecorp.bot.model.event.message.TextMessageContent;
-import com.linecorp.bot.model.message.TextMessage;
-import com.otsukatsuka.daisukebot.Enums;
-import com.otsukatsuka.daisukebot.MessageBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class DaisukebotApplicationTest {
 

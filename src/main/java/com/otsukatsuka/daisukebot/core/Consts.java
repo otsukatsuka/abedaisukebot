@@ -1,4 +1,4 @@
-package com.otsukatsuka.daisukebot;
+package com.otsukatsuka.daisukebot.core;
 
 /*
  * 定数クラス

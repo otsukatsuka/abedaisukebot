@@ -3,6 +3,7 @@ package com.otsukatsuka.daisukebot;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TextMessage;
+import com.otsukatsuka.daisukebot.core.Consts;
 
 import java.util.Map;
 
@@ -17,7 +18,7 @@ public class EchoTextMessageGenerator extends MessageGeneratorBase<TextMessageCo
         return TextMessageContent.class;
     }
 
-    EchoTextMessageGenerator(){
+    public EchoTextMessageGenerator(){
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.otsukatsuka.daisukebot.api;
 
-import com.otsukatsuka.daisukebot.Consts;
-import com.otsukatsuka.daisukebot.Enums.GnaviApiFormatType;
+import com.otsukatsuka.daisukebot.core.Consts;
+import com.otsukatsuka.daisukebot.core.Enums.GnaviApiFormatType;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

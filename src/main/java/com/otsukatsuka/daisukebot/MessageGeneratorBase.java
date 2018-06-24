@@ -1,6 +1,7 @@
 package com.otsukatsuka.daisukebot;
 
 import com.linecorp.bot.model.message.Message;
+import com.otsukatsuka.daisukebot.core.Consts;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Map;

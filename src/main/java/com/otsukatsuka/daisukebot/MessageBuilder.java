@@ -1,6 +1,7 @@
 package com.otsukatsuka.daisukebot;
 
-import com.otsukatsuka.daisukebot.Enums.GeneratorType;
+import com.otsukatsuka.daisukebot.core.Consts;
+import com.otsukatsuka.daisukebot.core.Enums.GeneratorType;
 import com.linecorp.bot.model.message.Message;
 
 import java.util.ArrayList;

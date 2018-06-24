@@ -1,4 +1,8 @@
-package com.otsukatsuka.daisukebot;
+package com.otsukatsuka.daisukebot.core;
+
+import com.otsukatsuka.daisukebot.EchoStickerMessageGenerator;
+import com.otsukatsuka.daisukebot.EchoTextMessageGenerator;
+import com.otsukatsuka.daisukebot.MessageGeneratorInterface;
 
 import java.util.Map;
 import java.util.Objects;
