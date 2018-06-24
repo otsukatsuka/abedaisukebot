@@ -49,14 +49,10 @@ public class GAreaSmallSearchApi {
     }
 
     private String getResult(String url) throws IOException {
-        System.out.println("url: " + url);
-
         Request request = new Request.Builder().url(url).build();
         Call call = httpClient.newCall(request);
         Response response = call.execute();
         String result = response.body().string();
-
-        System.out.println("result: " + result.substring(0,10));
 
         return result;
     }
