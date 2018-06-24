@@ -17,6 +17,7 @@ public class GnaviApiClient {
     }
 
     private String getApiKey(){
+        System.out.println("getApiKey");
         return new ConfigReader().getGnaviApiKey();
     }
 

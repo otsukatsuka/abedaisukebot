@@ -8,6 +8,7 @@ public class ConfigReader {
     private String gnaviApiKey;
 
     public String getGnaviApiKey(){
+        System.out.println("apikey = " + gnaviApiKey);
         return this.gnaviApiKey;
     }
 }
