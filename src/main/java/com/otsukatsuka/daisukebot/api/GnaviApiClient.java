@@ -1,5 +1,6 @@
 package com.otsukatsuka.daisukebot.api;
 
+import com.otsukatsuka.daisukebot.api.result.GnaviRestSearchResult;
 import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
