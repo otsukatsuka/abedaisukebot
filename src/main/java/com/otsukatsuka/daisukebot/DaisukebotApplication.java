@@ -6,6 +6,9 @@ import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 
 import com.otsukatsuka.daisukebot.api.GnaviApiClient;
+import com.otsukatsuka.daisukebot.api.GnaviRestSearchApi;
+import com.otsukatsuka.daisukebot.api.result.GnaviRestResult;
+import com.otsukatsuka.daisukebot.api.result.GnaviRestSearchResult;
 import com.otsukatsuka.daisukebot.service.BotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -36,19 +39,26 @@ public class DaisukebotApplication {
     GnaviApiClient gnaviApiClient;
 
 	@EventMapping
-    public List<Message> handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws IOException {
+    public List<Message> handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws IOException, InstantiationException, IllegalAccessException {
         System.out.println("event: " + event);
 
+        MessageProvider messageProvider = new MessageProvider();
+
         if(event.getMessage().getText().equals("gnavi")){
-            gnaviApiClient.getGAreaSmallSearchJson();
-            return null;
+            GnaviRestSearchResult restSearchResult = gnaviApiClient.searchRestaurantByAreaAndCategoryFreeWords(event.getMessage().getText());
+
+            Optional<GnaviRestResult> result = restSearchResult.rest.stream().findFirst();
+
+            if(result.isPresent()){
+                System.out.println("result is null");
+                return null;
+            }
+            return messageProvider.EchoSetTextMessage(result.get().urlMobile);
         }
 
         Optional<String> messageOptional = botService.getReplyTextMessage(event.getMessage().getText());
         if(!messageOptional.isPresent())
             return null;
-
-        MessageProvider messageProvider = new MessageProvider();
 
         return messageProvider.EchoSetTextMessage(messageOptional.get());
     }

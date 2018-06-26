@@ -2,16 +2,15 @@ package com.otsukatsuka.daisukebot.api;
 
 import com.otsukatsuka.daisukebot.core.Consts;
 import com.otsukatsuka.daisukebot.core.Enums;
-import com.otsukatsuka.daisukebot.core.Enums.GnaviApiFormatType;
 import okhttp3.OkHttpClient;
 
-import java.io.IOException;
+import java.util.Optional;
 
 
-public class GAreaSmallSearchApi extends AbstractGnaviApi{
+public class GAreaSmallSearchApi extends GnaviApiBase {
 
     @Override
-    protected String getBaseUrl() {
+    public String getBaseUrl() {
         return Consts.Api.GnaviApi.Url.GAreaSmallSearchApiUrl;
     }
 
@@ -19,12 +18,8 @@ public class GAreaSmallSearchApi extends AbstractGnaviApi{
         super(apiKey, httpClient);
     }
 
-    public static GAreaSmallSearchApi getInstance(String apiKey, OkHttpClient httpClient){
-        return new GAreaSmallSearchApi(apiKey, httpClient);
-    }
-
     @Override
-    protected String getUrlFormatJson(){
+    public String getUrlFormatJson(){
         return new GnaviApiUrlBuilder
                 .Builder(getBaseUrl(), this.apiKey)
                 .setFormatType(Enums.GnaviApiFormatType.Json.getFormatType())
@@ -33,7 +28,7 @@ public class GAreaSmallSearchApi extends AbstractGnaviApi{
     }
 
     @Override
-    protected String getUrlFromatXml(){
+    public String getUrlFromatXml(){
         return new GnaviApiUrlBuilder
                 .Builder(getBaseUrl(), this.apiKey)
                 .setFormatType(Enums.GnaviApiFormatType.Xml.getFormatType())

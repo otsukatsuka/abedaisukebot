@@ -6,29 +6,32 @@ import okhttp3.OkHttpClient;
 
 import java.util.Optional;
 
-public class GnaviRestSearchApi extends AbstractGnaviApi{
+public class GnaviRestSearchApi extends GnaviApiBase {
 
     private Optional<String> areaCodeS;
     private Optional<String> freeWord;
+    private Optional<String> categoryCodeS;
 
-    private GnaviRestSearchApi(String apiKey, OkHttpClient okHttpClient, Optional<String> areaCodeS, Optional<String> freeWord){
+    private GnaviRestSearchApi(String apiKey, OkHttpClient okHttpClient, Optional<String> areaCodeS, Optional<String> categoryCodeS, Optional<String> freeWord){
         super(apiKey, okHttpClient);
         this.areaCodeS = areaCodeS;
         this.freeWord = freeWord;
+        this.categoryCodeS = categoryCodeS;
     }
 
     @Override
-    protected String getBaseUrl() {
+    public String getBaseUrl() {
         return Consts.Api.GnaviApi.Url.GnaviRestSearchApiUrl;
     }
 
 
     @Override
-    protected String getUrlFormatJson() {
-        if(areaCodeS.isPresent() && freeWord.isPresent()){
+    public String getUrlFormatJson() {
+        if(areaCodeS.isPresent() && freeWord.isPresent() && categoryCodeS.isPresent()){
             return new GnaviApiUrlBuilder
                     .Builder(getBaseUrl(), this.apiKey)
                     .setAreaCodeS(areaCodeS.get())
+                    .setCategoryCodeS(categoryCodeS.get())
                     .setFreeWord(freeWord.get())
                     .setFreeWordCondition(Enums.FreeWordCondition.AND.getCondition())
                     .setFormatType(Enums.GnaviApiFormatType.Xml.getFormatType())
@@ -44,15 +47,11 @@ public class GnaviRestSearchApi extends AbstractGnaviApi{
     }
 
     @Override
-    protected String getUrlFromatXml() {
+    public String getUrlFromatXml() {
         return new GnaviApiUrlBuilder
                 .Builder(getBaseUrl(), this.apiKey)
                 .setFormatType(Enums.GnaviApiFormatType.Xml.getFormatType())
                 .build()
                 .buildUrl();
-    }
-
-    public GnaviRestSearchApi getInstance(String apiKey, OkHttpClient okHttpClient, Optional<String> areaCodeS, Optional<String> freeWord){
-        return new GnaviRestSearchApi(apiKey, okHttpClient, areaCodeS, freeWord);
     }
 }

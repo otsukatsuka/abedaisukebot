@@ -54,6 +54,11 @@ public class GnaviApiUrlBuilder {
             return this;
         }
 
+        public Builder setCategoryCodeS(String categoryCodeS){
+            set(GnaviApiParam.CategoryCodeS, categoryCodeS);
+            return this;
+        }
+
         public Builder setFreeWord(String freeWord){
             set(GnaviApiParam.FreeWord, freeWord);
             return this;

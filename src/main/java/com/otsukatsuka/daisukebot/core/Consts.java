@@ -23,7 +23,6 @@ public class Consts {
     public static class Api{
         public static class GnaviApi{
             public static class Url{
-                public static String GnaviApiUrl = "https://api.gnavi.co.jp/RestSearchAPI/20150630/?";
                 public static String GAreaSmallSearchApiUrl = "https://api.gnavi.co.jp/master/GAreaSmallSearchAPI/20150630/?";
                 public static String GnaviRestSearchApiUrl = "https://api.gnavi.co.jp/RestSearchAPI/20150630/?";
                 public static String CategorySmallSearchUrl = "https://api.gnavi.co.jp/master/CategorySmallSearchAPI/20150630/?";
@@ -33,6 +32,7 @@ public class Consts {
                 public static String Apikey = "keyid";
                 public static String Format = "format";
                 public static String AreaSCode = "areacode_s";
+                public static String CategoryCodeS = "category_s";
                 public static String FreeWord = "freeword";
                 public static String FreeWordCondition = "freeword_condition";
             }

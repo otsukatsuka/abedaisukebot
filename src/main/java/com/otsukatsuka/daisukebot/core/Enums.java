@@ -38,6 +38,7 @@ public class Enums {
         APIKEY(Consts.Api.GnaviApi.Parameters.Apikey),
         Format(Consts.Api.GnaviApi.Parameters.Format),
         AreaCodeS(Consts.Api.GnaviApi.Parameters.AreaSCode),
+        CategoryCodeS(Consts.Api.GnaviApi.Parameters.CategoryCodeS),
         FreeWord(Consts.Api.GnaviApi.Parameters.FreeWord),
         FreewordCondition(Consts.Api.GnaviApi.Parameters.FreeWordCondition);
 
