@@ -3,20 +3,14 @@ package com.otsukatsuka.daisukebot.api;
 import com.otsukatsuka.daisukebot.core.Consts;
 import com.otsukatsuka.daisukebot.core.Enums;
 import okhttp3.OkHttpClient;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Optional;
 
-public class GnaviRestSearchApi extends GnaviApiBase {
+public class GnaviRestSearchApi extends AbstractGnaviApi {
 
-    private Optional<String> areaCodeS;
-    private Optional<String> freeWord;
-    private Optional<String> categoryCodeS;
-
-    private GnaviRestSearchApi(String apiKey, OkHttpClient okHttpClient, Optional<String> areaCodeS, Optional<String> categoryCodeS, Optional<String> freeWord){
-        super(apiKey, okHttpClient);
-        this.areaCodeS = areaCodeS;
-        this.freeWord = freeWord;
-        this.categoryCodeS = categoryCodeS;
+    public GnaviRestSearchApi(GnaviSearchParameters gnaviSearchParameters){
+        super(gnaviSearchParameters);
     }
 
     @Override
@@ -27,20 +21,12 @@ public class GnaviRestSearchApi extends GnaviApiBase {
 
     @Override
     public String getUrlFormatJson() {
-        if(areaCodeS.isPresent() && freeWord.isPresent() && categoryCodeS.isPresent()){
-            return new GnaviApiUrlBuilder
-                    .Builder(getBaseUrl(), this.apiKey)
-                    .setAreaCodeS(areaCodeS.get())
-                    .setCategoryCodeS(categoryCodeS.get())
-                    .setFreeWord(freeWord.get())
-                    .setFreeWordCondition(Enums.FreeWordCondition.AND.getCondition())
-                    .setFormatType(Enums.GnaviApiFormatType.Xml.getFormatType())
-                    .build()
-                    .buildUrl();
-        }
-
         return new GnaviApiUrlBuilder
-                .Builder(getBaseUrl(), this.apiKey)
+                .Builder(getBaseUrl(), gnaviSearchParameters.getApiKey())
+                .setAreaCodeS(gnaviSearchParameters.getAreaSCode())
+                .setCategoryCodeS(gnaviSearchParameters.getCategorySCode())
+                .setFreeWord(gnaviSearchParameters.getFreeWords())
+                .setFreeWordCondition(Enums.FreeWordCondition.AND.getCondition())
                 .setFormatType(Enums.GnaviApiFormatType.Xml.getFormatType())
                 .build()
                 .buildUrl();
@@ -48,10 +34,6 @@ public class GnaviRestSearchApi extends GnaviApiBase {
 
     @Override
     public String getUrlFromatXml() {
-        return new GnaviApiUrlBuilder
-                .Builder(getBaseUrl(), this.apiKey)
-                .setFormatType(Enums.GnaviApiFormatType.Xml.getFormatType())
-                .build()
-                .buildUrl();
+        throw new NotImplementedException();
     }
 }

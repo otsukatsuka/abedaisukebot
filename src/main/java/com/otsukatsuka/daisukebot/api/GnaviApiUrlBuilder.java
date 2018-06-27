@@ -97,6 +97,8 @@ public class GnaviApiUrlBuilder {
         if(param.length() != 0)
             param = param.substring(0, param.length()-1);
 
+        System.out.println("url : " + this.baseUrl + param);
+
         return this.baseUrl + param;
     }
 }

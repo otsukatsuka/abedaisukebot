@@ -28,48 +28,40 @@ public class GnaviApiClient {
         return key;
     }
 
-    private OkHttpClient getHttpClient(){
-        return new OkHttpClient();
+    private GnaviSearchParameters getGnaviSearchParameters(String message){
+        return GnaviSearchParameters.create(getApiKey(),"","", "");
     }
 
-    private <T extends GnaviApiBase> String getJson(Class<T> clazz, Optional<GnaviSearchParameters> gnaviSearchParameters)
-            throws IOException, IllegalAccessException, InstantiationException
-    {
-        if(gnaviSearchParameters.isPresent()){
-            GnaviSearchParameters param = gnaviSearchParameters.get();
-
-            return clazz.newInstance().getInstance(getApiKey(),
-                    getHttpClient(),
-                    Optional.ofNullable(param.getAreaSCode()),
-                    Optional.ofNullable(param.getCategorySCode()),
-                    Optional.ofNullable(param.getFreeWords())).getJson();
-        }
-
-        return clazz.newInstance().getInstance(getApiKey(), getHttpClient(), null, null, null).getJson();
+    private String getGareaSerachJson(GnaviSearchParameters gnaviSearchParameters){
+        return new GAreaSmallSearchApi(gnaviSearchParameters).getUrlFormatJson();
+    }
+    private String getCategorySerachJson(GnaviSearchParameters gnaviSearchParameters){
+        return new CategorySmallSearchApi(gnaviSearchParameters).getUrlFormatJson();
+    }
+    private String getGnaviRestSearchJson(GnaviSearchParameters gnaviSearchParameters){
+        return new GnaviRestSearchApi(gnaviSearchParameters).getUrlFormatJson();
     }
 
-    private GnaviSearchParameters createParam(String message){
-        return GnaviSearchParameters.create("","","");
-    }
+    public GnaviRestSearchResult searchRestaurantByAreaAndCategoryFreeWords(String message) throws IOException {
+        GnaviSearchParameters param = getGnaviSearchParameters(message);
 
-    public GnaviRestSearchResult searchRestaurantByAreaAndCategoryFreeWords(String message) throws IllegalAccessException, IOException, InstantiationException {
-        GnaviSearchParameters param = createParam(message);
-
-        GAreaSmallSearchResult gAreaSmallSearchResult = JsonConverter.deserialize(getJson(GAreaSmallSearchApi.class, null),GAreaSmallSearchResult.class);
+        GAreaSmallSearchResult gAreaSmallSearchResult = JsonConverter.deserialize(getGareaSerachJson(param),GAreaSmallSearchResult.class);
         Optional<String> areaCode = gAreaSmallSearchResult.gAreaSmallSearchResult
                 .stream()
                 .filter(x -> x.areaName.contains("池袋"))
                 .map(x -> x.areaName)
                 .findFirst();
 
-        CategorySmallSearchResult categorySmallSearchResult = JsonConverter.deserialize(getJson(CategorySmallSearchApi.class, null), CategorySmallSearchResult.class);
+        CategorySmallSearchResult categorySmallSearchResult = JsonConverter.deserialize(getCategorySerachJson(param), CategorySmallSearchResult.class);
         Optional<String> categoryCode = categorySmallSearchResult.categoryS
                 .stream()
                 .filter(x -> x.categorySName.contains("居酒屋"))
                 .map(x -> x.categorySCode).findFirst();
 
-        GnaviSearchParameters searchParameters = GnaviSearchParameters.create(areaCode.get(), categoryCode.get(), "");
+        param.setAreaSCode(areaCode.get());
+        param.setCategorySCode(categoryCode.get());
+        param.setFreeWords("");
 
-        return JsonConverter.deserialize(getJson(GnaviRestSearchApi.class, Optional.ofNullable(searchParameters)) , GnaviRestSearchResult.class);
+        return JsonConverter.deserialize(getGnaviRestSearchJson(param), GnaviRestSearchResult.class);
     }
 }

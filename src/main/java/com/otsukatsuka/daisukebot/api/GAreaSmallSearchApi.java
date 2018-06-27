@@ -7,21 +7,21 @@ import okhttp3.OkHttpClient;
 import java.util.Optional;
 
 
-public class GAreaSmallSearchApi extends GnaviApiBase {
+public class GAreaSmallSearchApi extends AbstractGnaviApi {
 
     @Override
     public String getBaseUrl() {
         return Consts.Api.GnaviApi.Url.GAreaSmallSearchApiUrl;
     }
 
-    private GAreaSmallSearchApi(String apiKey, OkHttpClient httpClient){
-        super(apiKey, httpClient);
+    public GAreaSmallSearchApi(GnaviSearchParameters gnaviSearchParameters){
+        super(gnaviSearchParameters);
     }
 
     @Override
     public String getUrlFormatJson(){
         return new GnaviApiUrlBuilder
-                .Builder(getBaseUrl(), this.apiKey)
+                .Builder(getBaseUrl(), gnaviSearchParameters.getApiKey())
                 .setFormatType(Enums.GnaviApiFormatType.Json.getFormatType())
                 .build()
                 .buildUrl();
@@ -30,7 +30,7 @@ public class GAreaSmallSearchApi extends GnaviApiBase {
     @Override
     public String getUrlFromatXml(){
         return new GnaviApiUrlBuilder
-                .Builder(getBaseUrl(), this.apiKey)
+                .Builder(getBaseUrl(), gnaviSearchParameters.getApiKey())
                 .setFormatType(Enums.GnaviApiFormatType.Xml.getFormatType())
                 .build()
                 .buildUrl();

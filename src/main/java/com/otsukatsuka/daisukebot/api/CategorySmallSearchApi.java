@@ -2,12 +2,11 @@ package com.otsukatsuka.daisukebot.api;
 
 import com.otsukatsuka.daisukebot.core.Consts;
 import com.otsukatsuka.daisukebot.core.Enums;
-import okhttp3.OkHttpClient;
 
-public class CategorySmallSearchApi extends GnaviApiBase {
+public class CategorySmallSearchApi extends AbstractGnaviApi {
 
-    private CategorySmallSearchApi(String apiKey, OkHttpClient httpClient) {
-        super(apiKey, httpClient);
+    public CategorySmallSearchApi(GnaviSearchParameters gnaviSearchParameters) {
+        super(gnaviSearchParameters);
     }
 
     @Override
@@ -18,7 +17,7 @@ public class CategorySmallSearchApi extends GnaviApiBase {
     @Override
     public String getUrlFormatJson() {
         return new GnaviApiUrlBuilder
-                .Builder(getBaseUrl(), this.apiKey)
+                .Builder(getBaseUrl(), gnaviSearchParameters.getApiKey())
                 .setFormatType(Enums.GnaviApiFormatType.Json.getFormatType())
                 .build()
                 .buildUrl();
@@ -27,7 +26,7 @@ public class CategorySmallSearchApi extends GnaviApiBase {
     @Override
     public String getUrlFromatXml() {
         return new GnaviApiUrlBuilder
-                .Builder(getBaseUrl(), this.apiKey)
+                .Builder(getBaseUrl(), gnaviSearchParameters.getApiKey())
                 .setFormatType(Enums.GnaviApiFormatType.Xml.getFormatType())
                 .build()
                 .buildUrl();
