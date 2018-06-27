@@ -27,17 +27,18 @@ public class GnaviApiClient {
         return GnaviSearchParameters.create(getApiKey(),"","", "");
     }
 
-    private String getGareaSerachJson(GnaviSearchParameters gnaviSearchParameters){
-        return new GAreaSmallSearchApi(gnaviSearchParameters).getUrlFormatJson();
+    private String getGareaSerachJson(GnaviSearchParameters gnaviSearchParameters) throws IOException {
+        return new GAreaSmallSearchApi(gnaviSearchParameters).getJson();
     }
-    private String getCategorySerachJson(GnaviSearchParameters gnaviSearchParameters){
-        return new CategorySmallSearchApi(gnaviSearchParameters).getUrlFormatJson();
+    private String getCategorySerachJson(GnaviSearchParameters gnaviSearchParameters) throws IOException {
+        return new CategorySmallSearchApi(gnaviSearchParameters).getJson();
     }
-    private String getGnaviRestSearchJson(GnaviSearchParameters gnaviSearchParameters){
-        return new GnaviRestSearchApi(gnaviSearchParameters).getUrlFormatJson();
+    private String getGnaviRestSearchJson(GnaviSearchParameters gnaviSearchParameters) throws IOException {
+        return new GnaviRestSearchApi(gnaviSearchParameters).getJson();
     }
 
     public GnaviRestSearchResult searchRestaurantByAreaAndCategoryFreeWords(String message) throws IOException {
+        System.out.println("in searchRestaurantByAreaAndCategoryFreeWords");
         GnaviSearchParameters param = getGnaviSearchParameters(message);
 
         GAreaSmallSearchResult gAreaSmallSearchResult = JsonConverter.deserialize(getGareaSerachJson(param),GAreaSmallSearchResult.class);
@@ -47,11 +48,14 @@ public class GnaviApiClient {
                 .map(x -> x.areaName)
                 .findFirst();
 
+        System.out.println("areaCodes : " + areaCode.get());
         CategorySmallSearchResult categorySmallSearchResult = JsonConverter.deserialize(getCategorySerachJson(param), CategorySmallSearchResult.class);
         Optional<String> categoryCode = categorySmallSearchResult.categoryS
                 .stream()
                 .filter(x -> x.categorySName.contains("居酒屋"))
                 .map(x -> x.categorySCode).findFirst();
+
+        System.out.println("categoryCode : " + categoryCode.get());
 
         param.setAreaSCode(areaCode.get());
         param.setCategorySCode(categoryCode.get());
