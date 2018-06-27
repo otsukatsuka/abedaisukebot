@@ -18,6 +18,6 @@ public class GnaviRestResult {
     @JsonProperty("opentime")
     public String opentime;
 
-    @JsonProperty("url_mobile")
-    public String urlMobile;
+    @JsonProperty("url")
+    public String url;
 }

@@ -6,7 +6,6 @@ import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 
 import com.otsukatsuka.daisukebot.api.GnaviApiClient;
-import com.otsukatsuka.daisukebot.api.GnaviRestSearchApi;
 import com.otsukatsuka.daisukebot.api.result.GnaviRestResult;
 import com.otsukatsuka.daisukebot.api.result.GnaviRestSearchResult;
 import com.otsukatsuka.daisukebot.service.BotService;
@@ -53,7 +52,7 @@ public class DaisukebotApplication {
                 System.out.println("result is null");
                 return null;
             }
-            return messageProvider.EchoSetTextMessage(result.get().urlMobile);
+            return messageProvider.EchoSetTextMessage(result.get().url);
         }
 
         Optional<String> messageOptional = botService.getReplyTextMessage(event.getMessage().getText());
