@@ -1,18 +1,13 @@
 package com.otsukatsuka.daisukebot.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.otsukatsuka.daisukebot.api.result.CategorySmallSearchResult;
 import com.otsukatsuka.daisukebot.api.result.GAreaSmallSearchResult;
 import com.otsukatsuka.daisukebot.api.result.GnaviRestSearchResult;
-import com.otsukatsuka.daisukebot.core.Consts;
 import com.otsukatsuka.daisukebot.core.JsonConverter;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.security.InvalidParameterException;
 import java.util.Optional;
 
 @Component
