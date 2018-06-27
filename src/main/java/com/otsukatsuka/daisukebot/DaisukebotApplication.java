@@ -49,7 +49,7 @@ public class DaisukebotApplication {
 
             Optional<GnaviRestResult> result = restSearchResult.rest.stream().findFirst();
 
-            if(result.isPresent()){
+            if(!result.isPresent()){
                 System.out.println("result is null");
                 return null;
             }
