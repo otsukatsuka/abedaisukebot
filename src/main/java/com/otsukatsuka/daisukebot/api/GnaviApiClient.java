@@ -45,10 +45,10 @@ public class GnaviApiClient {
         Optional<String> areaCode = gAreaSmallSearchResult.gAreaSmallSearchResult
                 .stream()
                 .filter(x -> x.areaName.contains("池袋"))
-                .map(x -> x.areaName)
+                .map(x -> x.areaCode)
                 .findFirst();
 
-        System.out.println("areaCodes : " + areaCode.get());
+        System.out.println("areaCode : " + areaCode.get());
         CategorySmallSearchResult categorySmallSearchResult = JsonConverter.deserialize(getCategorySerachJson(param), CategorySmallSearchResult.class);
         Optional<String> categoryCode = categorySmallSearchResult.categoryS
                 .stream()
