@@ -27,7 +27,7 @@ public class GnaviRestSearchApi extends AbstractGnaviApi {
                 .setCategoryCodeS(gnaviSearchParameters.getCategorySCode())
                 .setFreeWord(gnaviSearchParameters.getFreeWords())
                 .setFreeWordCondition(Enums.FreeWordCondition.AND.getCondition())
-                .setFormatType(Enums.GnaviApiFormatType.Xml.getFormatType())
+                .setFormatType(Enums.GnaviApiFormatType.Json.getFormatType())
                 .build()
                 .buildUrl();
     }
