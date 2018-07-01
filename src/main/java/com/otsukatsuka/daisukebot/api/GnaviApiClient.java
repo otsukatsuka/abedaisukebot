@@ -4,6 +4,7 @@ import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TextMessage;
 import com.otsukatsuka.daisukebot.api.result.CategorySmallSearchResult;
 import com.otsukatsuka.daisukebot.api.result.GAreaSmallSearchResult;
+import com.otsukatsuka.daisukebot.api.result.GnaviRestResult;
 import com.otsukatsuka.daisukebot.api.result.GnaviRestSearchResult;
 import com.otsukatsuka.daisukebot.core.Consts;
 import com.otsukatsuka.daisukebot.core.JsonConverter;
@@ -120,19 +121,26 @@ public class GnaviApiClient {
         GnaviRestSearchResult gnaviRestSearchResult = searchRestaurantByAreaAndCategoryFreeWords(message);
 
         List<Message> messages = new ArrayList<>();
+
         messages.add(new TextMessage("message : " + message + "\n"
                 + "場所 " + gnaviRestSearchResult.parameters.getAreaText() + "\n"
                 + "フリーワード" + gnaviRestSearchResult.parameters.getFreeWords() + "\n"
                 + "カテゴリ" + gnaviRestSearchResult.parameters.getCategoryText()));
 
-        gnaviRestSearchResult.rest.forEach(x -> {
-            messages.add(new TextMessage(x.name  + "\n"
-                    + x.address + "\n"
-                    + "定休日 " + x.holiday  + "\n"
-                    + "営業時間" + x.opentime + "\n"
-                    + x.url));
-        });
+        Integer i = 0;
+        for (GnaviRestResult result : gnaviRestSearchResult.rest){
+            if(i >= 5){
+                break;
+            }
 
+            messages.add(new TextMessage(result.name  + "\n"
+                    + result.address + "\n"
+                    + "定休日 " + result.holiday  + "\n"
+                    + "営業時間" + result.opentime + "\n"
+                    + result.url));
+            i++;
+        }
+        
         return messages;
     }
 }
