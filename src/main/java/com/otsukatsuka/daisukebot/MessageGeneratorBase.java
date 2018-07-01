@@ -48,7 +48,7 @@ public abstract class MessageGeneratorBase<TMessageContent> implements MessageGe
     }
 
     @Override
-    public Message action() {
+    public Message action() throws IOException {
         if(hasSameMessageEvent()){
             return createFromMessageEvent(getMessageContent());
         }
