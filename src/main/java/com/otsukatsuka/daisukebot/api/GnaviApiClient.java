@@ -60,9 +60,10 @@ public class GnaviApiClient {
                 break;
             }
         }
-        sb.delete(0, index + 1);
         parameters.setFreeWords(freeWord);
         System.out.println("freeWord : " + freeWord + "message " + sb.toString());
+        if(!freeWord.isEmpty())
+            sb.delete(0, index + 1);
 
         Consts.bot.beg.forEach(x -> {
             int indexof = sb.indexOf(x);
