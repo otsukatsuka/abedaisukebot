@@ -34,7 +34,7 @@ public class GnaviApiClient {
 
         StringBuilder sb = new StringBuilder(messageExcludeBotName);
 
-        Integer index = 1;
+        Integer index = 0;
         String place = "";
 
         for (String con : Consts.bot.conjunction){
@@ -46,10 +46,11 @@ public class GnaviApiClient {
             }
         }
         sb.delete(0, index + 1);
-        index = 1;
+        index = 0;
 
         parameters.setAreaText(place);
-        System.out.println("place : " + place);
+        System.out.println("place : " + place + "message " + sb.toString());
+
         String freeWord = "";
         for (String con : Consts.bot.conjunction){
             index++;
@@ -61,7 +62,7 @@ public class GnaviApiClient {
         }
         sb.delete(0, index + 1);
         parameters.setFreeWords(freeWord);
-        System.out.println("freeWord : " + freeWord);
+        System.out.println("freeWord : " + freeWord + "message " + sb.toString());
 
         Consts.bot.beg.forEach(x -> {
             int indexof = sb.indexOf(x);
