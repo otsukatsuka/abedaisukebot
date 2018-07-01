@@ -14,10 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -104,6 +101,12 @@ public class BotService {
 
             if(message.isPresent()){
                 messages.add(new TextMessage(message.get()));
+
+                int randomNumber = (int)(Math.random() * 10) + 1;
+                if(randomNumber % 2 == 0){
+                    int stickerId = new Random().nextInt(Consts.MaxStickerId - 1);
+                    messages.add(new StickerMessage(Consts.DefaultPackageId, Integer.toString( stickerId + 1)));
+                }
             }
             return messages;
         }

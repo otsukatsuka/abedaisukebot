@@ -79,7 +79,7 @@ public class GnaviApiClient {
 
         if(place.isEmpty() || category.isEmpty())
             throw new InvalidParameterException();
-        
+
         return parameters;
     }
 
