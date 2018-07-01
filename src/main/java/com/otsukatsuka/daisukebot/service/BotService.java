@@ -76,7 +76,7 @@ public class BotService {
             List<Message> gnavi = new EchoGnaviRestMessageGenerator().GnaviRestList(receivedText);
             return gnavi;
         }catch (Exception e){
-
+            System.out.println(e.getMessage());
             if(!botType.isPresent()){
                 return messages;
             }
