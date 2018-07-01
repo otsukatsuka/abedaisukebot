@@ -127,7 +127,7 @@ public class GnaviApiClient {
                 + "フリーワード" + gnaviRestSearchResult.parameters.getFreeWords() + "\n"
                 + "カテゴリ" + gnaviRestSearchResult.parameters.getCategoryText()));
 
-        Integer i = 0;
+        Integer i = 1;
         for (GnaviRestResult result : gnaviRestSearchResult.rest){
             if(i >= 5){
                 break;
@@ -140,7 +140,7 @@ public class GnaviApiClient {
                     + result.url));
             i++;
         }
-        
+
         return messages;
     }
 }
