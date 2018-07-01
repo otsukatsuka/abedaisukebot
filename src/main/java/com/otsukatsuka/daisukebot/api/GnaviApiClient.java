@@ -44,7 +44,7 @@ public class GnaviApiClient {
         index = 1;
 
         parameters.setAreaText(place);
-
+        System.out.println("place : " + place);
         String freeWord = "";
         for (String con : Consts.bot.conjunction){
             index++;
@@ -56,6 +56,7 @@ public class GnaviApiClient {
         }
         sb.delete(0, index + 1);
         parameters.setFreeWords(freeWord);
+        System.out.println("freeWord : " + freeWord);
 
         Consts.bot.beg.forEach(x -> {
             int indexof = sb.indexOf(x);
@@ -65,6 +66,7 @@ public class GnaviApiClient {
 
         String category = sb.toString();
         parameters.setCategoryText(category);
+        System.out.println("category : " + category);
 
         return parameters;
     }
