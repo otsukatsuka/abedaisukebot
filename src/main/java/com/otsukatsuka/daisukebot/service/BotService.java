@@ -72,13 +72,15 @@ public class BotService {
         Optional<Integer> botType = getOptionalBotType(receivedText);
         List<Message> messages = new ArrayList<>();
 
-        if(!botType.isPresent()){
-            return messages;
-        }
         try {
             List<Message> gnavi = new EchoGnaviRestMessageGenerator().GnaviRestList(receivedText);
             return gnavi;
         }catch (Exception e){
+
+            if(!botType.isPresent()){
+                return messages;
+            }
+
             List<MessageText> messageTextList = getAllReplyMessageByBotType(botType.get());
 
             Collections.shuffle(messageTextList);
