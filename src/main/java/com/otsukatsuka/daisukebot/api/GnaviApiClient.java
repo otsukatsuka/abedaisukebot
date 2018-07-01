@@ -115,7 +115,7 @@ public class GnaviApiClient {
     }
 
     public List<Message> GnaviRestList(String message) throws IOException{
-        GnaviRestSearchResult gnaviRestSearchResult = new GnaviApiClient().searchRestaurantByAreaAndCategoryFreeWords(message);
+        GnaviRestSearchResult gnaviRestSearchResult = searchRestaurantByAreaAndCategoryFreeWords(message);
 
         List<Message> messages = new ArrayList<>();
         messages.add(new TextMessage("message : " + message + "\n"
