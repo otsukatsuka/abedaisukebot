@@ -2,6 +2,7 @@ package com.otsukatsuka.daisukebot.service;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TextMessage;
 import com.otsukatsuka.daisukebot.EchoGnaviRestMessageGenerator;
+import com.otsukatsuka.daisukebot.api.GnaviApiClient;
 import com.otsukatsuka.daisukebot.core.Consts;
 import com.otsukatsuka.daisukebot.entity.Bot;
 import com.otsukatsuka.daisukebot.entity.MessageText;
@@ -27,6 +28,9 @@ public class BotService {
 
     @Autowired
     MessageTextRepository messageTextRepository;
+
+    @Autowired
+    GnaviApiClient gnaviApiClient;
 
     private List<MessageText> getAllReplyMessageByBotType(int botType){
         List<MessageText> messageTextList = messageTextRepository.findAll();
@@ -73,10 +77,10 @@ public class BotService {
         List<Message> messages = new ArrayList<>();
 
         try {
-            List<Message> gnavi = new EchoGnaviRestMessageGenerator().GnaviRestList(receivedText);
+            List<Message> gnavi = gnaviApiClient.GnaviRestList(receivedText);
             return gnavi;
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            System.out.println(e);
             if(!botType.isPresent()){
                 return messages;
             }

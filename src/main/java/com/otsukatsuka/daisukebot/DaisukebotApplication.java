@@ -34,9 +34,6 @@ public class DaisukebotApplication {
 	@Autowired
     BotService botService;
 
-	@Autowired
-    GnaviApiClient gnaviApiClient;
-
 	@EventMapping
     public List<Message> handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws IOException, InstantiationException, IllegalAccessException {
         System.out.println("event: " + event);

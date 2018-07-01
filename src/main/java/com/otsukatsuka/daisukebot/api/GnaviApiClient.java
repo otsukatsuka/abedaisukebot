@@ -1,5 +1,7 @@
 package com.otsukatsuka.daisukebot.api;
 
+import com.linecorp.bot.model.message.Message;
+import com.linecorp.bot.model.message.TextMessage;
 import com.otsukatsuka.daisukebot.api.result.CategorySmallSearchResult;
 import com.otsukatsuka.daisukebot.api.result.GAreaSmallSearchResult;
 import com.otsukatsuka.daisukebot.api.result.GnaviRestSearchResult;
@@ -9,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -21,6 +25,7 @@ public class GnaviApiClient {
 
     private String getApiKey(){
         String key = apiConfig.getKey();
+        System.out.println(key);
         return key;
     }
 
@@ -81,7 +86,7 @@ public class GnaviApiClient {
         return new GnaviRestSearchApi(gnaviSearchParameters).getJson();
     }
 
-    public GnaviRestSearchResult searchRestaurantByAreaAndCategoryFreeWords(String message) throws IOException {
+    private GnaviRestSearchResult searchRestaurantByAreaAndCategoryFreeWords(String message) throws IOException {
         System.out.println("in searchRestaurantByAreaAndCategoryFreeWords");
         GnaviSearchParameters param = getGnaviSearchParameters(message);
 
@@ -107,5 +112,25 @@ public class GnaviApiClient {
         GnaviRestSearchResult result = JsonConverter.deserialize(getGnaviRestSearchJson(param), GnaviRestSearchResult.class);
         result.parameters = param;
         return result;
+    }
+
+    public List<Message> GnaviRestList(String message) throws IOException{
+        GnaviRestSearchResult gnaviRestSearchResult = new GnaviApiClient().searchRestaurantByAreaAndCategoryFreeWords(message);
+
+        List<Message> messages = new ArrayList<>();
+        messages.add(new TextMessage("message : " + message + "\n"
+                + "場所 " + gnaviRestSearchResult.parameters.getAreaText() + "\n"
+                + "フリーワード" + gnaviRestSearchResult.parameters.getFreeWords() + "\n"
+                + "カテゴリ" + gnaviRestSearchResult.parameters.getCategoryText()));
+
+        gnaviRestSearchResult.rest.forEach(x -> {
+            messages.add(new TextMessage(x.name  + "\n"
+                    + x.address + "\n"
+                    + "定休日 " + x.holiday  + "\n"
+                    + "営業時間" + x.opentime + "\n"
+                    + x.url));
+        });
+
+        return messages;
     }
 }

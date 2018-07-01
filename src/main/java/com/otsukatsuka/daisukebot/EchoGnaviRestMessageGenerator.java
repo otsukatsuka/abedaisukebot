@@ -34,25 +34,7 @@ public class EchoGnaviRestMessageGenerator extends MessageGeneratorBase<TextMess
         throw new NotImplementedException();
     }
 
-    public List<Message> GnaviRestList(String message) throws IOException{
-        GnaviRestSearchResult gnaviRestSearchResult = new GnaviApiClient().searchRestaurantByAreaAndCategoryFreeWords(message);
 
-        List<Message> messages = new ArrayList<>();
-        messages.add(new TextMessage("message : " + message + "\n"
-                + "場所 " + gnaviRestSearchResult.parameters.getAreaText() + "\n"
-                + "フリーワード" + gnaviRestSearchResult.parameters.getFreeWords() + "\n"
-                + "カテゴリ" + gnaviRestSearchResult.parameters.getCategoryText()));
-
-        gnaviRestSearchResult.rest.forEach(x -> {
-            messages.add(new TextMessage(x.name  + "\n"
-            + x.address + "\n"
-            + "定休日 " + x.holiday  + "\n"
-            + "営業時間" + x.opentime + "\n"
-            + x.url));
-        });
-
-        return messages;
-    }
 
     @Override
     protected Message create(Map<String,Object> parameters){
