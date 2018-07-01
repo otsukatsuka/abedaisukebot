@@ -122,10 +122,10 @@ public class GnaviApiClient {
 
         List<Message> messages = new ArrayList<>();
 
-        messages.add(new TextMessage("message : " + message + "\n"
+        messages.add(new TextMessage(message + "\n"
                 + "場所 " + gnaviRestSearchResult.parameters.getAreaText() + "\n"
-                + "フリーワード" + gnaviRestSearchResult.parameters.getFreeWords() + "\n"
-                + "カテゴリ" + gnaviRestSearchResult.parameters.getCategoryText()));
+                + "フリーワード " + gnaviRestSearchResult.parameters.getFreeWords() + "\n"
+                + "カテゴリ " + gnaviRestSearchResult.parameters.getCategoryText()));
 
         Integer i = 1;
         for (GnaviRestResult result : gnaviRestSearchResult.rest){

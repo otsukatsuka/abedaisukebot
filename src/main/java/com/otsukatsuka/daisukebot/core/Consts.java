@@ -56,7 +56,14 @@ public class Consts {
     }
 
     public static class bot{
-        public static List<String> beg = new ArrayList<>(Arrays.asList("見つけて", "みつけて", "探して", "さがして", "教えて", "おしえて"));
+        public static String GnaviNoResultMessage = "見つからなかった！飯屋探したいときは\n" +
+                "[場所]で[フリーワード（なくてもいい）]な[店の種類](探して,見つけて,食いたい,etc.)\n" +
+                "って言って\n" +
+                "例えば\n" +
+                "六本木でおしゃれな居酒屋探して\n" +
+                "池袋で定食食いたい\n" +
+                "とか！";
+        public static List<String> beg = new ArrayList<>(Arrays.asList("見つけて", "みつけて", "探して", "さがして", "教えて", "おしえて", "食べたい", "食いたい", "くいたい" , "たべたい"));
         public static List<String> conjunction = new ArrayList<>(Arrays.asList("で", "の", "な"));
     }
 }

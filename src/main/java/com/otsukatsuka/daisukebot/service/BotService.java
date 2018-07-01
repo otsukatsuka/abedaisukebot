@@ -1,5 +1,6 @@
 package com.otsukatsuka.daisukebot.service;
 import com.linecorp.bot.model.message.Message;
+import com.linecorp.bot.model.message.StickerMessage;
 import com.linecorp.bot.model.message.TextMessage;
 import com.otsukatsuka.daisukebot.EchoGnaviRestMessageGenerator;
 import com.otsukatsuka.daisukebot.api.GnaviApiClient;
@@ -80,8 +81,18 @@ public class BotService {
             List<Message> gnavi = gnaviApiClient.GnaviRestList(receivedText);
             return gnavi;
         }catch (Exception e){
+
             System.out.println(e);
+
             if(!botType.isPresent()){
+
+                for(String str : Consts.bot.beg){
+                    if(receivedText.contains(str)){
+                        messages.add(new TextMessage(Consts.bot.GnaviNoResultMessage));
+                        messages.add(new StickerMessage("1","10"));
+                    }
+
+                }
                 return messages;
             }
 

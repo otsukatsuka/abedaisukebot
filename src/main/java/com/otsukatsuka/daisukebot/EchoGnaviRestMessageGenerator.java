@@ -2,14 +2,8 @@ package com.otsukatsuka.daisukebot;
 
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.Message;
-import com.linecorp.bot.model.message.TextMessage;
-import com.otsukatsuka.daisukebot.api.GnaviApiClient;
-import com.otsukatsuka.daisukebot.api.result.GnaviRestSearchResult;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class EchoGnaviRestMessageGenerator extends MessageGeneratorBase<TextMessageContent> {
