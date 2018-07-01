@@ -104,8 +104,8 @@ public class BotService {
 
                 int randomNumber = (int)(Math.random() * 10) + 1;
                 if(randomNumber % 2 == 0){
-                    int stickerId = new Random().nextInt(Consts.MaxStickerId - 1);
-                    messages.add(new StickerMessage(Consts.DefaultPackageId, Integer.toString( stickerId + 1)));
+                    int stickerId = new Random().nextInt(Consts.MaxStickerId + 1) + 100;
+                    messages.add(new StickerMessage(Consts.DefaultPackageId, Integer.toString( stickerId )));
                 }
             }
             return messages;

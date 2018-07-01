@@ -13,7 +13,7 @@ public class Consts {
 
     public static final String DefaultPackageId = "1";
     public static final int MinStickerId = 1;
-    public static final int MaxStickerId = 430;
+    public static final int MaxStickerId = 18;
 
     public static class Parameters{
         public static final String MessageContent = "MessageContent";
