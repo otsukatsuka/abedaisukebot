@@ -38,10 +38,10 @@ public class GnaviApiClient {
         String place = "";
 
         for (String con : Consts.bot.conjunction){
-            index++;
             int i = sb.indexOf(con);
             if(i != -1){
                 place = sb.substring(0, i);
+                index = i;
                 break;
             }
         }
@@ -53,10 +53,10 @@ public class GnaviApiClient {
 
         String freeWord = "";
         for (String con : Consts.bot.conjunction){
-            index++;
             int i = sb.indexOf(con);
             if(i != -1){
                 freeWord = sb.substring(0, i);
+                index = i;
                 break;
             }
         }
