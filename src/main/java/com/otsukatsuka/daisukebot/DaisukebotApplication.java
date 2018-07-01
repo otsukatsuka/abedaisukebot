@@ -40,26 +40,7 @@ public class DaisukebotApplication {
 	@EventMapping
     public List<Message> handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws IOException, InstantiationException, IllegalAccessException {
         System.out.println("event: " + event);
-
-        MessageProvider messageProvider = new MessageProvider();
-
-        if(event.getMessage().getText().equals("gnavi")){
-            GnaviRestSearchResult restSearchResult = gnaviApiClient.searchRestaurantByAreaAndCategoryFreeWords(event.getMessage().getText());
-
-            Optional<GnaviRestResult> result = restSearchResult.rest.stream().findFirst();
-
-            if(!result.isPresent()){
-                System.out.println("result is null");
-                return null;
-            }
-            return messageProvider.EchoSetTextMessage(result.get().url);
-        }
-
-        Optional<String> messageOptional = botService.getReplyTextMessage(event.getMessage().getText());
-        if(!messageOptional.isPresent())
-            return null;
-
-        return messageProvider.EchoSetTextMessage(messageOptional.get());
+        return botService.getReplyTextMessage(event.getMessage().getText());
     }
 
     @EventMapping

@@ -1,5 +1,9 @@
 package com.otsukatsuka.daisukebot.core;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /*
  * 定数クラス
  */
@@ -22,6 +26,8 @@ public class Consts {
 
     public static class Api{
         public static class GnaviApi{
+            public static List<String> Gnavi = new ArrayList<>(Arrays.asList("ぐるなび","ぐるナビ","グルナビ"));
+
             public static class Url{
                 public static String GAreaSmallSearchApiUrl = "https://api.gnavi.co.jp/master/GAreaSmallSearchAPI/20150630/?";
                 public static String GnaviRestSearchApiUrl = "https://api.gnavi.co.jp/RestSearchAPI/20150630/?";
@@ -47,5 +53,10 @@ public class Consts {
                 public static int OR = 2;
             }
         }
+    }
+
+    public static class bot{
+        public static List<String> beg = new ArrayList<>(Arrays.asList("見つけて", "みつけて", "探して", "さがして", "教えて", "おしえて"));
+        public static List<String> conjunction = new ArrayList<>(Arrays.asList("で", "の", "な"));
     }
 }

@@ -2,6 +2,7 @@ package com.otsukatsuka.daisukebot.api.result;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.otsukatsuka.daisukebot.api.GnaviSearchParameters;
 
 import java.util.List;
 import java.util.Map;
@@ -13,4 +14,6 @@ public class GnaviRestSearchResult {
 
     @JsonProperty("rest")
     public List<GnaviRestResult> rest;
+
+    public GnaviSearchParameters parameters;
 }

@@ -5,6 +5,7 @@ import com.otsukatsuka.daisukebot.core.Consts;
 import com.otsukatsuka.daisukebot.core.Enums.GeneratorType;
 
 import com.linecorp.bot.model.message.Message;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.HashMap;
 import java.util.List;

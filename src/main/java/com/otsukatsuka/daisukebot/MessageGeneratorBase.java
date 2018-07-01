@@ -4,6 +4,7 @@ import com.linecorp.bot.model.message.Message;
 import com.otsukatsuka.daisukebot.core.Consts;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.io.IOException;
 import java.util.Map;
 
 public abstract class MessageGeneratorBase<TMessageContent> implements MessageGeneratorInterface {
@@ -26,7 +27,7 @@ public abstract class MessageGeneratorBase<TMessageContent> implements MessageGe
         return getMessageContent() != null;
     }
 
-    protected Message createFromMessageEvent(TMessageContent messageContent){
+    protected Message createFromMessageEvent(TMessageContent messageContent) throws IOException {
         throw new NotImplementedException();
     }
 

@@ -6,7 +6,11 @@ public class GnaviSearchParameters {
 
     private String areaSCode;
 
+    private String areaText;
+
     private String categorySCode;
+
+    private String categoryText;
 
     private String freeWords;
 
@@ -60,6 +64,22 @@ public class GnaviSearchParameters {
 
     public OkHttpClient getHttpClient(){
         return httpClient;
+    }
+
+    public String getAreaText() {
+        return areaText;
+    }
+
+    public void setAreaText(String areaText) {
+        this.areaText = areaText;
+    }
+
+    public String getCategoryText() {
+        return categoryText;
+    }
+
+    public void setCategoryText(String categoryText) {
+        this.categoryText = categoryText;
     }
 
     public void setHttpClient(OkHttpClient httpClient){

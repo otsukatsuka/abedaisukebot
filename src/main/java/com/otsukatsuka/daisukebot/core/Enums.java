@@ -1,5 +1,6 @@
 package com.otsukatsuka.daisukebot.core;
 
+import com.otsukatsuka.daisukebot.EchoGnaviRestMessageGenerator;
 import com.otsukatsuka.daisukebot.EchoStickerMessageGenerator;
 import com.otsukatsuka.daisukebot.EchoTextMessageGenerator;
 import com.otsukatsuka.daisukebot.MessageGeneratorInterface;
@@ -15,7 +16,8 @@ public class Enums {
 
     public enum GeneratorType {
         EchoTextMessage(0,new EchoTextMessageGenerator()),
-        StickerMessage(1,new EchoStickerMessageGenerator());
+        StickerMessage(1,new EchoStickerMessageGenerator()),
+        GnaviRestMessage(2,new EchoGnaviRestMessageGenerator());
 
         private final MessageGeneratorInterface messageGenerator;
         private final int generatorCode;

@@ -1,4 +1,8 @@
 package com.otsukatsuka.daisukebot.service;
+import com.linecorp.bot.model.message.Message;
+import com.linecorp.bot.model.message.TextMessage;
+import com.otsukatsuka.daisukebot.EchoGnaviRestMessageGenerator;
+import com.otsukatsuka.daisukebot.core.Consts;
 import com.otsukatsuka.daisukebot.entity.Bot;
 import com.otsukatsuka.daisukebot.entity.MessageText;
 import com.otsukatsuka.daisukebot.repository.BotRepository;
@@ -7,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -62,16 +68,28 @@ public class BotService {
     /*
      * 受け取ったメッセージから返信内容を決めて返す
      */
-    public Optional<String> getReplyTextMessage(String receivedText){
+    public List<Message> getReplyTextMessage(String receivedText){
         Optional<Integer> botType = getOptionalBotType(receivedText);
+        List<Message> messages = new ArrayList<>();
 
         if(!botType.isPresent()){
-            return Optional.ofNullable(null);
+            return messages;
         }
-        List<MessageText> messageTextList = getAllReplyMessageByBotType(botType.get());
+        try {
+            List<Message> gnavi = new EchoGnaviRestMessageGenerator().GnaviRestList(receivedText);
+            return gnavi;
+        }catch (Exception e){
+            List<MessageText> messageTextList = getAllReplyMessageByBotType(botType.get());
 
-        Collections.shuffle(messageTextList);
+            Collections.shuffle(messageTextList);
 
-        return messageTextList.stream().map(x -> x.getMessage()).findFirst();
+            Optional<String> message = messageTextList.stream().map(x -> x.getMessage()).findFirst();
+
+            if(message.isPresent()){
+                messages.add(new TextMessage(message.get()));
+            }
+            return messages;
+        }
     }
+
 }
