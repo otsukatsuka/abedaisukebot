@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -76,6 +77,9 @@ public class GnaviApiClient {
         parameters.setCategoryText(category);
         System.out.println("category : " + category);
 
+        if(place.isEmpty() || category.isEmpty())
+            throw new InvalidParameterException();
+        
         return parameters;
     }
 
