@@ -4,9 +4,7 @@ import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TextMessage;
 import com.otsukatsuka.daisukebot.api.GnaviApiClient;
-import com.otsukatsuka.daisukebot.api.GnaviSearchParameters;
 import com.otsukatsuka.daisukebot.api.result.GnaviRestSearchResult;
-import javafx.util.Pair;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.IOException;
