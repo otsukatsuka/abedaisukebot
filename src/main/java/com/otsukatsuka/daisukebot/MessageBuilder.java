@@ -4,6 +4,7 @@ import com.otsukatsuka.daisukebot.core.Consts;
 import com.otsukatsuka.daisukebot.core.Enums.GeneratorType;
 import com.linecorp.bot.model.message.Message;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,10 +30,15 @@ public class MessageBuilder {
             return this;
         }
 
-        MessageBuilder build(){
+        MessageBuilder build() throws IOException {
             try {
                 generatorTypes.forEach(generatorType -> {
-                    Message message = generatorType.of(this.parameters).action();
+                    Message message = null;
+                    try {
+                        message = generatorType.of(this.parameters).action();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     addMessage(message);
                 });
             }catch (Exception e){
