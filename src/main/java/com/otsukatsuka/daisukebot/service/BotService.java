@@ -72,7 +72,13 @@ public class BotService {
      */
     public List<Message> getReplyTextMessage(String receivedText){
         Optional<Integer> botType = getOptionalBotType(receivedText);
+
         List<Message> messages = new ArrayList<>();
+
+        if(!botType.isPresent()){
+            return messages;
+        }
+
 
         List<MessageText> messageTextList = getAllReplyMessageByBotType(botType.get());
 
