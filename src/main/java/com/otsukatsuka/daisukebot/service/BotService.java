@@ -30,7 +30,7 @@ public class BotService {
     @Autowired
     GnaviApiClient gnaviApiClient;
 
-    private List<MessageText> getAllReplyMessageByBotType(int botType){
+    private List<MessageText> getAllReplyMessageByBotType(int botType) {
         List<MessageText> messageTextList = messageTextRepository.findAll();
         return messageTextList.stream().filter(x -> x.getBotType() == botType).collect(Collectors.toList());
     }
@@ -39,13 +39,13 @@ public class BotService {
      * 与えられたテキストからbotIdを判定する
      * 見つからなかったらnull
      */
-    private Optional<Integer> getOptionalBotType(String text){
+    private Optional<Integer> getOptionalBotType(String text) {
 
         List<Bot> list = botRepository.findAll();
 
         Optional<String> containNickName = getContainNickName(list.stream().map(x -> x.getNickname()).collect(Collectors.toList()), text);
 
-        if(!containNickName.isPresent()){
+        if (!containNickName.isPresent()) {
             return Optional.ofNullable(null);
         }
 
@@ -53,12 +53,12 @@ public class BotService {
         return Optional.ofNullable(botOptional.isPresent() ? botOptional.get().getBotType() : null);
     }
 
-    private Optional<String> getContainNickName(List<String> nickNameList, String text){
+    private Optional<String> getContainNickName(List<String> nickNameList, String text) {
 
         String botNickName = "";
 
-        for(String nickname : nickNameList){
-            if(text.contains(nickname)){
+        for (String nickname : nickNameList) {
+            if (text.contains(nickname)) {
                 botNickName = nickname;
                 break;
             }
@@ -70,46 +70,56 @@ public class BotService {
     /*
      * 受け取ったメッセージから返信内容を決めて返す
      */
-    public List<Message> getReplyTextMessage(String receivedText){
+    public List<Message> getReplyTextMessage(String receivedText) {
         Optional<Integer> botType = getOptionalBotType(receivedText);
         List<Message> messages = new ArrayList<>();
 
-        try {
-            List<Message> gnavi = gnaviApiClient.GnaviRestList(receivedText);
-            return gnavi;
-        }catch (Exception e){
+        if (!botType.isPresent()) {
 
-            System.out.println(e);
-
-            if(!botType.isPresent()){
-
-                for(String str : Consts.bot.beg){
-                    if(receivedText.contains(str)){
-                        messages.add(new TextMessage(Consts.bot.GnaviNoResultMessage));
-                        messages.add(new StickerMessage("1","10"));
-                    }
-
+            for (String str : Consts.bot.beg) {
+                if (receivedText.contains(str)) {
+                    messages.add(new TextMessage(Consts.bot.GnaviNoResultMessage));
+                    messages.add(new StickerMessage("1", "10"));
                 }
-                return messages;
-            }
 
-            List<MessageText> messageTextList = getAllReplyMessageByBotType(botType.get());
-
-            Collections.shuffle(messageTextList);
-
-            Optional<String> message = messageTextList.stream().map(x -> x.getMessage()).findFirst();
-
-            if(message.isPresent()){
-                messages.add(new TextMessage(message.get()));
-
-                int randomNumber = (int)(Math.random() * 10) + 1;
-                if(randomNumber % 2 == 0){
-                    int stickerId = new Random().nextInt(Consts.MaxStickerId + 1) + 100;
-                    messages.add(new StickerMessage(Consts.DefaultPackageId, Integer.toString( stickerId )));
-                }
             }
             return messages;
         }
-    }
 
+//        try {
+//            List<Message> gnavi = gnaviApiClient.GnaviRestList(receivedText);
+//            return gnavi;
+//        }catch (Exception e){
+//
+//            System.out.println(e);
+//
+//            if(!botType.isPresent()){
+//
+//                for(String str : Consts.bot.beg){
+//                    if(receivedText.contains(str)){
+//                        messages.add(new TextMessage(Consts.bot.GnaviNoResultMessage));
+//                        messages.add(new StickerMessage("1","10"));
+//                    }
+//
+//                }
+//                return messages;
+//            }
+//
+        List<MessageText> messageTextList = getAllReplyMessageByBotType(botType.get());
+
+        Collections.shuffle(messageTextList);
+
+        Optional<String> message = messageTextList.stream().map(x -> x.getMessage()).findFirst();
+
+        if (message.isPresent()) {
+            messages.add(new TextMessage(message.get()));
+
+            int randomNumber = (int) (Math.random() * 10) + 1;
+            if (randomNumber % 2 == 0) {
+                int stickerId = new Random().nextInt(Consts.MaxStickerId + 1) + 100;
+                messages.add(new StickerMessage(Consts.DefaultPackageId, Integer.toString(stickerId)));
+            }
+        }
+        return messages;
+    }
 }
